@@ -1,1 +1,1 @@
-# cross-numbers
+# crossed-numbers
