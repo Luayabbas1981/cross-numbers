@@ -1,5 +1,3 @@
-let startingValue, targetValue, currentValue;
-
 // function generates a random integer between min (inclusive) and max (inclusive).
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
