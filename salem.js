@@ -120,3 +120,18 @@ function findTargetValue(startingValue, targetValue, expressions) {
 } catch (error) {
     console.error("Error:", error.message);
 } */
+
+// function generates a mathematical expression string with a single operand. The operand value falls within the range specified by `startingValue` and `targetValue`. It allows choosing an operator either randomly from (+, -, *, /) or by specifying it through an optional `operatorString` parameter.
+function generateExpression(startingValue, targetValue, operatorString) {
+    const operators = ["+", "-", "*", "/"];
+    // Generate random number between startingValue and targetValue (inclusive)
+    const operand = getRandomIntInclusive(startingValue, targetValue);
+    const operatorIndex = Math.floor(Math.random() * operators.length);
+    const operator = operatorString ? operatorString : operators[operatorIndex];
+    return `${operator}${operand}`;
+}
+//testing
+const expression1 = generateExpression(10, 20);
+console.log(expression1);  // Output: Might be something like "-15" or "+8" depending on the random choices
+const expression2 = generateExpression(5, 12, "*");
+console.log(expression2);  // Output: Will always be something like "*7" because the operator is specified
