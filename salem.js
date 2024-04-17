@@ -20,19 +20,19 @@ function generateRandomArray(min, max, count) {
     return randomArray;
 }
 //testing
-/* try {
-    // const randomArray1 = generateRandomArray(5, 10, 3);
-    // console.log(randomArray1); //The output will be an array with three random integers between 5 and 10.
+// try {
+//     // const randomArray1 = generateRandomArray(5, 10, 3);
+//     // console.log(randomArray1); //The output will be an array with three random integers between 5 and 10.
 
-    // const randomArray2 = generateRandomArray(15, 6, 4);
-    // console.log(randomArray2); //Error generating random array: Invalid arguments: count must be between 1 and 10, min must be less than or equal to max
+//     // const randomArray2 = generateRandomArray(15, 6, 4);
+//     // console.log(randomArray2); //Error generating random array: Invalid arguments: count must be between 1 and 10, min must be less than or equal to max
 
-    // const randomArray3 = generateRandomArray(1, 15, 0);
-    // console.log(randomArray3); //Error generating random array: Invalid arguments: count must be between 1 and 10, min must be less than or equal to max
+//     // const randomArray3 = generateRandomArray(1, 15, 0);
+//     // console.log(randomArray3); //Error generating random array: Invalid arguments: count must be between 1 and 10, min must be less than or equal to max
 
-} catch (error) {
-    console.error("Error generating random array:", error.message);
-} */
+// } catch (error) {
+//     console.error("Error generating random array:", error.message);
+// }
 
 
 //function takes an array of strings representing arithmetic expressions and returns the final calculated result. 
@@ -72,19 +72,18 @@ function calculateExpression(expressions) {
     }
     return result;
 }
-
 // testing
-// const expressions1 = ["+5", "-1", "*2", "/2"]; //4
-// const expressions2 = 5 //Error: Input must be an array of expressions
-//const expressions3 = ["5"] //Error: Invalid expression format. Use operators (+-*/) followed by a number.
-//const expressions4 = ["/0"] //Error: Division by zero is not allowed
+// try {
+//     // const expressions1 = ["+5", "-1", "*2", "/2"]; //4
+//     // const expressions2 = 5 //Error: Input must be an array of expressions
+//     // const expressions3 = ["5"] //Error: Invalid expression format. Use operators (+-*/) followed by a number.
+//     // const expressions4 = ["/0"] //Error: Division by zero is not allowed
 
-/* try {
-    const result = calculateExpression(expressions1);
-    console.log(result);
-} catch (error) {
-    console.error("Error:", error.message);
-} */
+//     // const result = calculateExpression(expressions1);
+//     // console.log(result);
+// } catch (error) {
+//     console.error("Error:", error.message);
+// }
 
 
 //function takes three arguments and returns an object containing information about reaching a target value using a series of arithmetic expressions:
@@ -109,17 +108,17 @@ function findTargetValue(startingValue, targetValue, expressions) {
     };
 }
 //testing
-/* try {
-    // const result1 = findTargetValue(10, 20, ["+5", "-3", "*2"]);
-    // console.log("Current Value:", result1.currentValue); //Current Value: 14
-    // console.log("Target Reached:", result1.targetReached); //Target Reached: false
+// try {
+//     // const result1 = findTargetValue(10, 20, ["+5", "-3", "*2"]);
+//     // console.log("Current Value:", result1.currentValue); //Current Value: 14
+//     // console.log("Target Reached:", result1.targetReached); //Target Reached: false
 
-    // const result2 = findTargetValue(1, 18, ["+6", "*5", "-17"]);
-    // console.log("Current Value:", result2.currentValue); //Current Value: 18
-    // console.log("Target Reached:", result2.targetReached); //Target Reached: true
-} catch (error) {
-    console.error("Error:", error.message);
-} */
+//     // const result2 = findTargetValue(1, 18, ["+6", "*5", "-17"]);
+//     // console.log("Current Value:", result2.currentValue); //Current Value: 18
+//     // console.log("Target Reached:", result2.targetReached); //Target Reached: true
+// } catch (error) {
+//     console.error("Error:", error.message);
+// }
 
 // function generates a mathematical expression string with a single operand. The operand value falls within the range specified by `startingValue` and `targetValue`. It allows choosing an operator either randomly from (+, -, *, /) or by specifying it through an optional `operatorString` parameter.
 function generateExpression(startingValue, targetValue, operatorString) {
@@ -127,11 +126,54 @@ function generateExpression(startingValue, targetValue, operatorString) {
     // Generate random number between startingValue and targetValue (inclusive)
     const operand = getRandomIntInclusive(startingValue, targetValue);
     const operatorIndex = Math.floor(Math.random() * operators.length);
+    if (operatorString) {
+        const match = operatorString.match(/[+\-*\/]/);
+        if (!match) {
+            throw new Error("Invalid operator format. Use operators (+-*/)");
+        }
+    }
     const operator = operatorString ? operatorString : operators[operatorIndex];
     return `${operator}${operand}`;
 }
 //testing
-const expression1 = generateExpression(10, 20);
-console.log(expression1);  // Output: Might be something like "-15" or "+8" depending on the random choices
-const expression2 = generateExpression(5, 12, "*");
-console.log(expression2);  // Output: Will always be something like "*7" because the operator is specified
+// try {
+//     // const expression1 = generateExpression(10, 20);
+//     // console.log(expression1);  // Output: Might be something like "-15" or "+8" depending on the random choices
+
+//     // const expression2 = generateExpression(5, 12, "*");
+//     // console.log(expression2);  // Output: Will always be something like "*7" because the operator is specified
+
+//     // const expression3 = generateExpression(5, 12, "f");
+//     // console.log(expression3);  // Output: Error: Invalid operator format. Use operators (+-*/)
+// } catch (error) {
+//     console.error("Error:", error.message);
+// }
+
+//function generates an array of expressions with a given number of elements (NumExpression) using the provided operator (operatorString) and starting/target values. It recursively calls itself until an array that evaluates to the target value is found.
+function generateExpressionArray(startingValue, targetValue, operatorString, NumExpression) {
+    const expressionArray = [];
+    for (let i = 0; i < NumExpression; i++) {
+        const expression = generateExpression(startingValue, targetValue, operatorString);
+        expressionArray.push(expression);
+    }
+    let newExpression = "+" + startingValue;
+    const expressionsEval = calculateExpression([newExpression, ...expressionArray]);
+    if (expressionsEval === targetValue) {
+        return expressionArray;
+    }
+    console.log(expressionArray);
+    return generateExpressionArray(startingValue, targetValue, operatorString, NumExpression);
+}
+//testing
+// try {
+//     // const expressionArray1 = generateExpressionArray(1, 10, "", 3);  
+//     // console.log(expressionArray1); // Output: Will be something like [ '+3', '-1', '+7' ]
+
+//     // const expressionArray2 = generateExpressionArray(1, 10, "+", 3);  
+//     // console.log(expressionArray2); // Output: Will be something like [ '+2', '+6', '+1' ]
+
+//     // const expressionArray3 = generateExpressionArray(1, 10, "a", 3);  
+//     // console.log(expressionArray3); // Output: Error: Invalid operator format. Use operators (+-*/)
+// } catch (error) {
+//     console.error("Error:", error.message);
+// }
