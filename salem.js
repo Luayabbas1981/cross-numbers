@@ -90,7 +90,7 @@ function calculateExpression(expressions) {
 //startingValue (integer): This represents the initial value to begin calculations with. It must be between 1 and 99 (inclusive).
 //targetValue (integer): This represents the desired final value to reach. It must also be between 1 and 99 (inclusive).
 //expressions (array of strings): This is an array containing strings representing simple arithmetic expressions. Each expression should follow the format "operator + operand" where the operator can be +, -, *, or / and the operand is a number.
-function findTargetValue(startingValue, targetValue, expressions) {
+function isTargetValueReached(startingValue, targetValue, expressions) {
     // Validate arguments
     if (startingValue < 1 || startingValue > 99 ||
         targetValue < 1 || targetValue > 99 ||
@@ -109,11 +109,11 @@ function findTargetValue(startingValue, targetValue, expressions) {
 }
 //testing
 // try {
-//     // const result1 = findTargetValue(10, 20, ["+5", "-3", "*2"]);
+//     // const result1 = isTargetValueReached(10, 20, ["+5", "-3", "*2"]);
 //     // console.log("Current Value:", result1.currentValue); //Current Value: 14
 //     // console.log("Target Reached:", result1.targetReached); //Target Reached: false
 
-//     // const result2 = findTargetValue(1, 18, ["+6", "*5", "-17"]);
+//     // const result2 = isTargetValueReached(1, 18, ["+6", "*5", "-17"]);
 //     // console.log("Current Value:", result2.currentValue); //Current Value: 18
 //     // console.log("Target Reached:", result2.targetReached); //Target Reached: true
 // } catch (error) {
@@ -149,8 +149,8 @@ function generateExpression(startingValue, targetValue, operatorString) {
 //     console.error("Error:", error.message);
 // }
 
-//function generates an array of expressions with a given number of elements (NumExpression) using the provided operator (operatorString) and starting/target values. It recursively calls itself until an array that evaluates to the target value is found.
-function generateExpressionArray(startingValue, targetValue, operatorString, NumExpression) {
+//function generates an array of expressions with a given number of elements (NumExpression or `1` as default value) using the provided operator (operatorString) and starting/target values. It recursively calls itself until an array that evaluates to the target value is found.
+function generateExpressionArray(startingValue, targetValue, operatorString, NumExpression = 1) {
     const expressionArray = [];
     for (let i = 0; i < NumExpression; i++) {
         const expression = generateExpression(startingValue, targetValue, operatorString);
@@ -174,6 +174,27 @@ function generateExpressionArray(startingValue, targetValue, operatorString, Num
 
 //     // const expressionArray3 = generateExpressionArray(1, 10, "a", 3);  
 //     // console.log(expressionArray3); // Output: Error: Invalid operator format. Use operators (+-*/)
+// } catch (error) {
+//     console.error("Error:", error.message);
+// }
+
+
+//testing so far
+// const startingValue1 = 1;
+// const targetValue1 = 10;
+// const operatorString1 = "+";
+// const NumExpression1 = 3;
+// let expressionArray1 = [];
+// try {
+//     expressionArray1 = generateExpressionArray(startingValue1, targetValue1, operatorString1, NumExpression1)
+//     console.log({ expressionArray1 }); //Output: Will be something like { expressionArray1: [ '+2', '+1', '+6' ] }
+// } catch (error) {
+//     console.error("Error:", error.message);
+// }
+
+// try {
+//     const isTargetValueReached1 = isTargetValueReached(startingValue1, targetValue1, expressionArray1);
+//     console.log(isTargetValueReached1); // Output: { currentValue: 10, targetReached: true } 
 // } catch (error) {
 //     console.error("Error:", error.message);
 // }
