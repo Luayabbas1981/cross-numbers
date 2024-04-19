@@ -5,7 +5,7 @@ import {
     isTargetValueReached,
     // generateExpression,
     generateExpressionArray,
-} from "./helper.js";
+} from "./JS-components/helper.js";
 
 
 // console.log("Test");
