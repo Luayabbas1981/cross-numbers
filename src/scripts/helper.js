@@ -4,9 +4,6 @@ function getRandomIntInclusive(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-//testing
-//console.log(getRandomIntInclusive(1, 99));  //The output will be a random integer between  1 and 99.
-
 
 // function generates a random array of `count` integers between min and max (inclusive).
 function generateRandomIntegers(min, max, count) {
@@ -19,21 +16,6 @@ function generateRandomIntegers(min, max, count) {
     }
     return randomIntegersArray;
 }
-//testing
-// try {
-//     // const randomIntegersArray1 = generateRandomIntegers(5, 10, 3);
-//     // console.log(randomIntegersArray1); //The output will be an array with three random integers between 5 and 10.
-
-//     // const randomIntegersArray2 = generateRandomIntegers(15, 6, 4);
-//     // console.log(randomIntegersArray2); //Error generating random array: Invalid arguments: count must be between 1 and 10, min must be less than or equal to max
-
-//     // const randomIntegersArray3 = generateRandomIntegers(1, 15, 0);
-//     // console.log(randomIntegersArray3); //Error generating random array: Invalid arguments: count must be between 1 and 10, min must be less than or equal to max
-
-// } catch (error) {
-//     console.error("Error generating random array:", error.message);
-// }
-
 
 //function takes an array of strings representing arithmetic expressions and returns the final calculated result. 
 function calculateExpressions(expressions) {
@@ -72,19 +54,6 @@ function calculateExpressions(expressions) {
     }
     return result;
 }
-// testing
-// try {
-//     // const expressions1 = ["+5", "-1", "*2", "/2"]; //4
-//     // const expressions2 = 5 //Error: Input must be an array of expressions
-//     // const expressions3 = ["5"] //Error: Invalid expression format. Use operators (+-*/) followed by a number.
-//     // const expressions4 = ["/0"] //Error: Division by zero is not allowed
-
-//     // const result = calculateExpressions(expressions1);
-//     // console.log(result);
-// } catch (error) {
-//     console.error("Error:", error.message);
-// }
-
 
 //function takes three arguments and returns an object containing information about reaching a target value using a series of arithmetic expressions:
 //startingValue (integer): This represents the initial value to begin calculations with. It must be between 1 and 99 (inclusive).
@@ -107,18 +76,6 @@ function isTargetValueReached(startingValue, targetValue, expressions) {
         targetReached
     };
 }
-//testing
-// try {
-//     // const result1 = isTargetValueReached(5, 20, ["+5", "-3", "*2"]);
-//     // console.log("Current Value:", result1.currentValue); //Current Value: 14
-//     // console.log("Target Reached:", result1.targetReached); //Target Reached: false
-
-//     // const result2 = isTargetValueReached(1, 18, ["+6", "*5", "-17"]);
-//     // console.log("Current Value:", result2.currentValue); //Current Value: 18
-//     // console.log("Target Reached:", result2.targetReached); //Target Reached: true
-// } catch (error) {
-//     console.error("Error:", error.message);
-// }
 
 // function generates a mathematical expression string with a single operand. The operand value falls within the range specified by `startingValue` and `maxValue`. It allows choosing an operator either randomly from (+, -, *, /) or by specifying it through an optional `operatorString` parameter.
 function generateExpression(startingValue, maxValue, operatorString) {
@@ -135,19 +92,6 @@ function generateExpression(startingValue, maxValue, operatorString) {
     const operator = operatorString ? operatorString : operators[operatorIndex];
     return `${operator}${operand}`;
 }
-//testing
-// try {
-//     // const expression1 = generateExpression(10, 20);
-//     // console.log(expression1);  // Output: Might be something like "-15" or "+8" depending on the random choices
-
-//     // const expression2 = generateExpression(5, 12, "*");
-//     // console.log(expression2);  // Output: Will always be something like "*7" because the operator is specified
-
-//     // const expression3 = generateExpression(5, 12, "f");
-//     // console.log(expression3);  // Output: Error: Invalid operator format. Use operators (+-*/)
-// } catch (error) {
-//     console.error("Error:", error.message);
-// }
 
 // This function generates a random math expression array that evaluates to a specific target value. It keeps trying until it finds a valid set of expressions.
 function generateExpressionArray(startingValue, maxValue, operatorString, numExpression = 1) {
@@ -173,20 +117,6 @@ function generateExpressionArray(startingValue, maxValue, operatorString, numExp
     }
     return generateExpressionArray(startingValue, maxValue, operatorString, numExpression);
 }
-//testing
-// try {
-//     // const expressionArray1 = generateExpressionArray(1, 10, "", 3);
-//     // console.log(expressionArray1); // Output: Will be something like { expressionArray: [ '+2', '+4', '*8' ], targetValue: 14 }
-
-//     // const expressionArray2 = generateExpressionArray(5, 10, "+", 4);
-//     // console.log(expressionArray2); // Output: Will be something like { expressionArray: [ '+5', '+7', '+10', '+9' ], targetValue: 36 }
-
-//     // const expressionArray3 = generateExpressionArray(1, 10, "a", 3);  
-//     // console.log(expressionArray3); // Output: Error: Invalid operator format. Use operators (+-*/)
-// } catch (error) {
-//     console.error("Error:", error.message);
-// }
-
 
 export {
     getRandomIntInclusive,
