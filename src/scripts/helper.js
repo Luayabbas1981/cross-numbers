@@ -104,11 +104,6 @@ function generateExpressionArray(startingValue, maxValue, operatorString, numExp
     const targetValue = calculateExpressions([newExpression, ...expressionArray]);
 
     if (targetValue > startingValue && targetValue < 100 && Number.isInteger(targetValue) && expressionArray.length === numExpression) {
-        // console.log({
-        //     expressionArray,
-        //     targetValue
-        // });
-        //shuffle expression array to make it more challenging
         expressionArray.sort(() => Math.random() - 0.5);
         return {
             expressionArray,

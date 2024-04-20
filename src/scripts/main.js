@@ -1,5 +1,5 @@
 import {
-  // getRandomIntInclusive,
+  getRandomIntInclusive,
   // generateRandomIntegers,
   // calculateExpressions,
   isTargetValueReached,
@@ -20,14 +20,16 @@ const resultEl = document.querySelector(".model__result");
 newGameButton.addEventListener("click", startGame);
 
 //Global variables
-const startingValue = 1;
+let startingValue = getRandomIntInclusive(1, 10);
 
 // Main function of the game
 function startGame() {
   try {
-    const maxValue = 10;
+    startingValue = getRandomIntInclusive(1, 20);
+    const maxValue = 20;
     const operatorString = "";
-    const numExpression = 3;
+    const numExpression = 4;
+
 
     checkZone.innerHTML = "";
     resultEl.innerHTML = "";
@@ -100,6 +102,13 @@ function checkPlayGame() {
   );
   // console.log(checkObject);
   const { currentValue, targetReached } = checkObject;
-  currentValueEl.textContent = currentValue;
-  resultEl.innerHTML = targetReached ? "GREAT! 🤩" : "☹️ Try again.";
+  currentValueEl.textContent = !Number.isInteger(currentValue) ? currentValue.toFixed(2) : currentValue;
+  if (!targetReached) {
+    currentValueEl.classList.add("shake-horizontal");
+    setTimeout(() => {
+      currentValueEl.classList.remove("shake-horizontal");
+    }, 800);
+  } else {
+    resultEl.innerHTML = "GREAT! 🤩";
+  }
 }
