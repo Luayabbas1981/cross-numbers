@@ -11,6 +11,7 @@ import {
 const startingValueEl = document.querySelector(".starting-value");
 const currentValueEl = document.querySelector(".current-value");
 const targetValueEl = document.querySelector(".target-value");
+const gameLevelInput = document.getElementById("game-level");
 const newGameButton = document.querySelector("#newGameBtn");
 const checkZone = document.querySelector(".model__check ");
 const expressionsZone = document.querySelector(".model__expressions");
@@ -20,16 +21,30 @@ const resultEl = document.querySelector(".model__result");
 newGameButton.addEventListener("click", startGame);
 
 //Global variables
-let startingValue = getRandomIntInclusive(1, 10);
+//let gameLevel = 0; // game level starts at 0 and ends at 10
 
 // Main function of the game
 function startGame() {
   try {
-    startingValue = getRandomIntInclusive(1, 20);
-    const maxValue = 20;
-    const operatorString = "";
-    const numExpression = 4;
-
+    let gameLevel = parseInt(gameLevelInput.value);
+    // console.log(gameLevel);
+    let min, max, startingValue, maxValue, operatorString, numExpression;
+    if (gameLevel === 0) {
+      min = 1;
+      max = 10;
+      startingValue = getRandomIntInclusive(min, max);
+      maxValue = max;
+      operatorString = "+";
+      numExpression = 1
+    } else {
+      min = gameLevel;
+      max = (gameLevel * 10) - 1;
+      startingValue = getRandomIntInclusive(min, max);
+      maxValue = Math.ceil((startingValue + max) / 2);
+      operatorString = "";
+      numExpression = gameLevel < 6 ? getRandomIntInclusive(gameLevel, (gameLevel + 1)) : getRandomIntInclusive((gameLevel - 1), (gameLevel));
+    }
+    // console.log({ min, max, startingValue, maxValue, numExpression });
 
     checkZone.innerHTML = "";
     resultEl.innerHTML = "";
@@ -94,6 +109,7 @@ function checkPlayGame() {
   for (const ex of checkZone.children) {
     expressions.push(ex.innerHTML);
   }
+  const startingValue = startingValueEl.textContent
   const targetValue = Number(targetValueEl.textContent);
   const checkObject = isTargetValueReached(
     startingValue,
@@ -103,12 +119,13 @@ function checkPlayGame() {
   // console.log(checkObject);
   const { currentValue, targetReached } = checkObject;
   currentValueEl.textContent = !Number.isInteger(currentValue) ? currentValue.toFixed(2) : currentValue;
-  if (!targetReached) {
+  if (targetReached && expressionsZone.children.length === 0) {
+    resultEl.innerHTML = "GREAT! 🤩";
+
+  } else if (!targetReached && expressionsZone.children.length === 0) {
     currentValueEl.classList.add("shake-horizontal");
     setTimeout(() => {
       currentValueEl.classList.remove("shake-horizontal");
     }, 800);
-  } else {
-    resultEl.innerHTML = "GREAT! 🤩";
   }
 }

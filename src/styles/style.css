@@ -64,6 +64,14 @@ h1 {
     clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
 }
 
+.model__controller label{
+    color: #fff;
+}
+.model__controller input{
+    padding: 5px;
+    margin-right: 0.5rem;
+}
+
 .btn {
     padding: 10px 20px;
     background-color: #0700d6;
