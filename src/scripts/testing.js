@@ -13,7 +13,7 @@ console.log({ randomInteger });
 
 try {
   const randomIntegersArray = generateRandomIntegers(1, 99, 4);
-  console.log({ randomIntegersArray }); //The output will be an array with three random integers between 5 and 10.
+  console.log({ randomIntegersArray }); //The output will be an array with 4 random integers between 1 and 99.
 } catch (error) {
   console.error("Error generating random array:", error.message);
 }
