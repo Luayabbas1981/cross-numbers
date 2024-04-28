@@ -27,6 +27,7 @@ const newGameButton = document.querySelector("#newGameBtn");
 const checkZone = document.querySelector(".model__check ");
 const expressionsZone = document.querySelector(".model__expressions");
 const resultEl = document.querySelector(".model__result");
+console.log(targetValueEl);
 // event listeners
 newGameButton.addEventListener("click", startGame);
 
@@ -73,6 +74,7 @@ function startGame() {
     currentValueEl.textContent = startingValue;
     startingValueEl.textContent = startingValue;
     targetValueEl.textContent = targetValue;
+
     expressionsZone.innerHTML = "";
 
     for (let i = 0; i < numExpression; i++) {

@@ -6,19 +6,25 @@
 
 body {
     padding: 2rem;
-    background: radial-gradient(ellipse at 94% 49%, #363f57 0, rgba(50, 59, 82, 0) 64%), radial-gradient(ellipse at 38% 89%, #323a50 14%, #151515 74%);
+    background: radial-gradient(ellipse at 94% 49%, #363f57 0, rgba(50, 59, 82, 0) 64%),
+        radial-gradient(ellipse at 38% 89%, #323a50 14%, #151515 74%);
     height: 100dvh;
 }
-
-.game-wrapper{
-    height: 95vh;
+header {
+    height: 5dvh;
+}
+.game-wrapper {
+    height: 95dvh;
 }
 .game-field {
     height: 80%;
     aspect-ratio: 1;
     padding: 1rem;
 }
-.model__check,.model__expressions,.model__controller,.model__result{
+.model__check,
+.model__expressions,
+.model__controller,
+.model__result {
     width: 50%;
     height: 5%;
     display: flex;
@@ -33,58 +39,44 @@ body {
 .game-field .cell {
     height: 100%;
     width: calc(100% / var(--columns));
-    
 }
 .path {
     animation: create-path 1s ease-in-out forwards;
     animation-delay: calc(0.2s * var(--delay));
     opacity: 0;
-    
 }
 @keyframes create-path {
     to {
         opacity: 1;
     }
 }
-.path img{
-    width: 90% ;
+.path img {
+    width: 90%;
     height: 90%;
 }
-.starting-value ,.target-value{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   border: 3px solid;
-   border-radius: 50%;
-   color: #fff;
-   border-color: #fff;
+.starting-value,
+.target-value-container {
+    position: relative;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid;
+    color: #fff;
+    border-color: #fff;
 }
 
 .current-value {
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    position: absolute;
+    left: 5%;
+    bottom: 1%;
 }
 
-.target-value {
-   border-color: green;
+.target-value-container {
+    border-color: green;
+    border-radius: 0%;
 }
 
-#newGameBtn{
+#newGameBtn {
     background-color: yellow;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

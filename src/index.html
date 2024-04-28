@@ -22,27 +22,31 @@
     <title>Test Page</title>
   </head>
   <body>
-  
-    <div class="game-wrapper  d-flex flex-column justify-content-center align-items-center gap-2">
-      <div class="game-field">
-      </div>
+    <header>
+      <h2 class="text-center text-light">MOP</h2>
+    </header>
+    <div
+      class="game-wrapper d-flex flex-column justify-content-center align-items-center gap-2"
+    >
+      <div class="game-field"></div>
       <div class="model__check bg-warning"></div>
       <div class="model__expressions bg-danger"></div>
       <div class="model__controller">
-        <label for="game-level">Game Level
+        <label for="game-level"
+          >Game Level
           <input
-          type="number"
-          id="game-level"
-          min="0"
-          max="10"
-          step="1"
-          value="0"
-        />
+            type="number"
+            id="game-level"
+            min="0"
+            max="10"
+            step="1"
+            value="0"
+          />
         </label>
-        
+
         <button id="newGameBtn" class="btn">New Game</button>
       </div>
-      
+
       <div class="model__result"></div>
     </div>
     <!-- JavaScript -->
