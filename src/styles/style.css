@@ -11,10 +11,10 @@ body {
     height: 100dvh;
 }
 header {
-    height: 5dvh;
+    height: 2vh;
 }
 .game-wrapper {
-    height: 95dvh;
+    height: 93vh;
 }
 .game-field {
     height: 80%;
