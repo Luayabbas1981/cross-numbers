@@ -29,12 +29,12 @@ function generateGameGrid() {
 }
 generateGameGrid();
 
-
 function generatePath() {
-    let randomDirectionIndex
-    let randomDirection
-    let newDirectionOrder = [];
-    
+  let randomDirectionIndex = null;
+  let randomDirection = null;
+  let newDirectionOrder = [];
+  let changeDirectionAfter = null;
+
   const directions = [
     {
       id: "up-left",
@@ -57,9 +57,9 @@ function generatePath() {
     },
     { id: "down-left", value: calculatePosition("down-left"), x: 0, y: -1 },
   ];
-   randomDirectionIndex = Math.floor(Math.random() * directions.length);
-   randomDirection = directions[randomDirectionIndex];
-  
+  randomDirectionIndex = Math.floor(Math.random() * directions.length);
+  randomDirection = directions[randomDirectionIndex];
+
   function loopArrayFromStart() {
     let index = randomDirectionIndex;
     do {
@@ -88,11 +88,11 @@ function generatePath() {
         break;
       case "up-right":
         initX = (coords - 5) / 2;
-        initY =  (coords - 5) / 2 + 4;
+        initY = (coords - 5) / 2 + 4;
         break;
       case "down-left":
         initX = (coords - 5) / 2 + 4;
-        initY = (coords - 5) / 2 ;
+        initY = (coords - 5) / 2;
         break;
       case "down-right":
         initX = (coords - 5) / 2 + 4;
@@ -102,7 +102,7 @@ function generatePath() {
     let id = `${initX}-${initY}`;
     return id;
   }
-  const changeDirectionAfter = directions.length;
+  changeDirectionAfter = directions.length;
   let startCellId = startValue.id.split("-");
   let nextCell;
   for (let i = 0; i < changeDirectionAfter; i++) {
