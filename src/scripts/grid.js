@@ -30,7 +30,6 @@ function generatePath() {
   let targetValue = null;
   let randomDirectionIndex = null;
   let newDirectionOrder = [];
-  let changeDirectionAfter = null;
   let startCellId = null;
   let nextCell;
 
