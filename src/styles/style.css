@@ -10,10 +10,21 @@ body {
     height: 100dvh;
 }
 
+.game-wrapper{
+    height: 95vh;
+}
 .game-field {
-    height: 70vh;
+    height: 80%;
     aspect-ratio: 1;
     padding: 1rem;
+}
+.model__check,.model__expressions,.model__controller,.model__result{
+    width: 50%;
+    height: 5%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #fff;
 }
 
 .game-field .row {
