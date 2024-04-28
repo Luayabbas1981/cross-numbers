@@ -7,7 +7,7 @@ let targetValue = null;
 // Game values
 const cellsArray = [];
 const pathArray = [];
-let coords = 11;
+let coords = 7;
 const rows = coords;
 const columns = coords;
 
@@ -91,7 +91,7 @@ function generatePath() {
   );
   targetValue.classList.add("target-value");
 
-  // Calculate path position 
+  // Calculate path position
   function calculatePosition(startPosition) {
     const offset = (coords - 5) / 2;
     let initX = offset;
@@ -109,7 +109,10 @@ function generatePath() {
         initY += adjustment;
         break;
     }
-    let id = `${Math.max(0, Math.min(coords - 1, initX))}-${Math.max(0, Math.min(coords - 1, initY))}`;
+    let id = `${Math.max(0, Math.min(coords - 1, initX))}-${Math.max(
+      0,
+      Math.min(coords - 1, initY)
+    )}`;
     return id;
   }
 
@@ -178,6 +181,18 @@ generatePath();
 
 // Add path class and delay var for path array elements
 pathArray.forEach((cell, index) => {
+  if (cell.classList.contains("up")) {
+    cell.children[0].src = "../../images/neon-arrow-up.png";
+  }
+  if (cell.classList.contains("down")) {
+    cell.children[0].src = "../../images/neon-arrow-down.png";
+  }
+  if (cell.classList.contains("left")) {
+    cell.children[0].src = "../../images/neon-arrow-left.png";
+  }
+  if (cell.classList.contains("right")) {
+    cell.children[0].src = "../../images/neon-arrow-right.png";
+  }
   cell.classList.add("path");
   cell.style.setProperty("--delay", index);
 });
