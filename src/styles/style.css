@@ -10,23 +10,28 @@ body {
     height: 100dvh;
 }
 
-.game-field{
+.game-field {
     height: 80vh;
     aspect-ratio: 1;
     padding: 1rem;
 }
 
 .game-field .row {
-height: calc(100% / var(--rows));
+    height: calc(100% / var(--rows));
 }
 .game-field .cell {
     height: 100%;
     width: calc(100% / var(--columns));
-    border: .1px solid rgb(0, 157, 255);
+    border: 0.1px solid rgb(0, 157, 255);
 }
-
-.green{
-    background-color: #9cfd01;
+.path {
+    animation: create-path .5s ease-in-out forwards;
+    animation-delay: calc(0.1s * var(--delay));
+}
+@keyframes create-path {
+    to {
+        background-color: #6fd800;
+    }
 }
 
 
@@ -97,7 +102,7 @@ h1 {
 }
 
 .starting-value {
-    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+   
     background-color: yellow;
 }
 
@@ -106,14 +111,14 @@ h1 {
 }
 
 .target-value {
-    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    
     background-color: red;
 }
 
-.model__controller label{
+.model__controller label {
     color: #fff;
 }
-.model__controller input{
+.model__controller input {
     padding: 5px;
     margin-right: 0.5rem;
 }
@@ -177,8 +182,8 @@ h1 {
 
 /* Animation */
 .shake-horizontal {
-    -webkit-animation: shake-horizontal .8s cubic-bezier(.455, .03, .515, .955) both;
-    animation: shake-horizontal .8s cubic-bezier(.455, .03, .515, .955) both
+    -webkit-animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+    animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
 }
 
 /* ----------------------------------------------
@@ -189,55 +194,67 @@ h1 {
  * ---------------------------------------------- */
 
 @-webkit-keyframes shake-horizontal {
-    0%, 100% {
+    0%,
+    100% {
         -webkit-transform: translateX(0);
-        transform: translateX(0)
+        transform: translateX(0);
     }
 
-    10%, 30%, 50%, 70% {
+    10%,
+    30%,
+    50%,
+    70% {
         -webkit-transform: translateX(-10px);
-        transform: translateX(-10px)
+        transform: translateX(-10px);
     }
 
-    20%, 40%, 60% {
+    20%,
+    40%,
+    60% {
         -webkit-transform: translateX(10px);
-        transform: translateX(10px)
+        transform: translateX(10px);
     }
 
     80% {
         -webkit-transform: translateX(8px);
-        transform: translateX(8px)
+        transform: translateX(8px);
     }
 
     90% {
         -webkit-transform: translateX(-8px);
-        transform: translateX(-8px)
+        transform: translateX(-8px);
     }
 }
 
 @keyframes shake-horizontal {
-    0%, 100% {
+    0%,
+    100% {
         -webkit-transform: translateX(0);
-        transform: translateX(0)
+        transform: translateX(0);
     }
 
-    10%, 30%, 50%, 70% {
+    10%,
+    30%,
+    50%,
+    70% {
         -webkit-transform: translateX(-10px);
-        transform: translateX(-10px)
+        transform: translateX(-10px);
     }
 
-    20%, 40%, 60% {
+    20%,
+    40%,
+    60% {
         -webkit-transform: translateX(10px);
-        transform: translateX(10px)
+        transform: translateX(10px);
     }
 
     80% {
         -webkit-transform: translateX(8px);
-        transform: translateX(8px)
+        transform: translateX(8px);
     }
 
     90% {
         -webkit-transform: translateX(-8px);
-        transform: translateX(-8px)
+        transform: translateX(-8px);
     }
 }

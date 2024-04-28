@@ -105,6 +105,11 @@ function generatePath() {
       }
     }
   }
+  // Add path class and delay var for path array elements
+  pathArray.forEach((cell, index)=>{
+    cell.classList.add("path")
+    cell.style.setProperty("--delay",index)
+  })
   console.log(pathArray);
 }
 generatePath();
