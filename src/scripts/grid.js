@@ -114,16 +114,12 @@ function generatePath() {
   targetValue.classList.add("target-value");
 
   // Start path fun
-  changeDirectionAfter = directions.length;
+ 
   startCellId = startValue.id.split("-");
   function startPath() {
-    for (let i = 0; i < changeDirectionAfter; i++) {
+    for (let i = 0; i < 3; i++) {
       let nextDirection = newDirectionOrder[i];
-
-      if (i > 2) {
-        break;
-      }
-      for (let x = 0; x < changeDirectionAfter; x++) {
+      for (let x = 0; x < directions.length; x++) {
         nextCell = cellsArray.find((cell) => {
           if (i === 2 && x > 2) {
             return;
