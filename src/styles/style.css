@@ -6,7 +6,7 @@
 
 body {
     padding: 2rem;
-    background-color: #000;
+    background: radial-gradient(ellipse at 94% 49%, #2b3244 0, rgba(43, 50, 68, 0) 64%), radial-gradient(ellipse at 38% 89%, #2b3244 14%, #000 74%);
     height: 100dvh;
 }
 
@@ -22,25 +22,38 @@ body {
 .game-field .cell {
     height: 100%;
     width: calc(100% / var(--columns));
-    border: 0.1px solid rgb(0, 157, 255);
+    
 }
 .path {
-    animation: create-path .5s ease-in-out forwards;
-    animation-delay: calc(0.1s * var(--delay));
+    animation: create-path 1s ease-in-out forwards;
+    animation-delay: calc(0.2s * var(--delay));
+    opacity: 0;
 }
 @keyframes create-path {
     to {
-        background-color: #6fd800;
+        opacity: 1;
     }
 }
+.path img{
+    width: 90% ;
+    height: 90%;
+}
+.starting-value {
+   
+   border: 3px solid rgb(246, 246, 244);
+   border-radius: 50%;
+}
 
+.current-value {
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
 
+.target-value {
+    border-radius: 50%;
+    border: 3px solid rgb(255, 0, 0);
+}
 
-
-
-
-
-
+  
 
 
 
@@ -101,19 +114,6 @@ h1 {
     border-radius: 10px;
 }
 
-.starting-value {
-   
-    background-color: yellow;
-}
-
-.current-value {
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-}
-
-.target-value {
-    
-    background-color: red;
-}
 
 .model__controller label {
     color: #fff;

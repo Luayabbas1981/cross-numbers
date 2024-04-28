@@ -7,7 +7,7 @@ let targetValue = null;
 // Game values
 const cellsArray = [];
 const pathArray = [];
-let coords = 13;
+let coords = 9;
 const rows = coords;
 const columns = coords;
 
@@ -43,12 +43,14 @@ function generatePath() {
       value: calculatePosition("up-left"),
       x: -1,
       y: 0,
+      img: "../../images/neon-arrow-up.png",
     },
     {
       id: "up-right",
       value: calculatePosition("up-right"),
       x: 0,
       y: 1,
+      img: "../../images/neon-arrow-right.png",
     },
 
     {
@@ -56,8 +58,15 @@ function generatePath() {
       value: calculatePosition("down-right"),
       x: 1,
       y: 0,
+      img: "../../images/neon-arrow-down.png",
     },
-    { id: "down-left", value: calculatePosition("down-left"), x: 0, y: -1 },
+    {
+      id: "down-left",
+      value: calculatePosition("down-left"),
+      x: 0,
+      y: -1,
+      img: "../../images/neon-arrow-left.png",
+    },
   ];
   randomDirectionIndex = Math.floor(Math.random() * directions.length);
   randomDirection = directions[randomDirectionIndex];
@@ -110,6 +119,7 @@ function generatePath() {
   function startPath() {
     for (let i = 0; i < changeDirectionAfter; i++) {
       let nextDirection = newDirectionOrder[i];
+
       if (i > 2) {
         break;
       }
@@ -119,12 +129,16 @@ function generatePath() {
             return;
           } else if (i === 2 && x > 1) {
             if (nextDirection.id === "up-left") {
+              nextCell.innerHTML = `<img src="../../images/neon-arrow-right.png"/>`;
               return cell.id === `${+startCellId[0]}-${+startCellId[1] + 1}`;
             } else if (nextDirection.id === "up-right") {
+              nextCell.innerHTML = `<img src="../../images/neon-arrow-down.png"/>`;
               return cell.id === `${+startCellId[0] + 1}-${+startCellId[1]}`;
             } else if (nextDirection.id === "down-right") {
+              nextCell.innerHTML = `<img src="../../images/neon-arrow-left.png"/>`;
               return cell.id === `${+startCellId[0]}-${+startCellId[1] - 1}`;
             } else if (nextDirection.id === "down-left") {
+              nextCell.innerHTML = `<img src="../../images/neon-arrow-up.png"/>`;
               return cell.id === `${+startCellId[0] - 1}-${+startCellId[1]}`;
             }
           } else {
@@ -138,6 +152,7 @@ function generatePath() {
         });
         if (nextCell) {
           startCellId = nextCell.id.split("-");
+          nextCell.innerHTML = `<img src="${newDirectionOrder[i].img}"/>`;
           pathArray.push(nextCell);
         } else {
           break;
