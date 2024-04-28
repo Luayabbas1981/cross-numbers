@@ -173,25 +173,24 @@ function generatePath() {
         }
       }
     }
+    // Add path class and delay var for path array elements
+    pathArray.forEach((cell, index) => {
+      if (cell.classList.contains("up")) {
+        cell.children[0].src = "../../images/neon-arrow-up.png";
+      }
+      if (cell.classList.contains("down")) {
+        cell.children[0].src = "../../images/neon-arrow-down.png";
+      }
+      if (cell.classList.contains("left")) {
+        cell.children[0].src = "../../images/neon-arrow-left.png";
+      }
+      if (cell.classList.contains("right")) {
+        cell.children[0].src = "../../images/neon-arrow-right.png";
+      }
+      cell.classList.add("path");
+      cell.style.setProperty("--delay", index);
+    });
   }
   startPath();
 }
 generatePath();
-
-// Add path class and delay var for path array elements
-pathArray.forEach((cell, index) => {
-  if (cell.classList.contains("up")) {
-    cell.children[0].src = "../../images/neon-arrow-up.png";
-  }
-  if (cell.classList.contains("down")) {
-    cell.children[0].src = "../../images/neon-arrow-down.png";
-  }
-  if (cell.classList.contains("left")) {
-    cell.children[0].src = "../../images/neon-arrow-left.png";
-  }
-  if (cell.classList.contains("right")) {
-    cell.children[0].src = "../../images/neon-arrow-right.png";
-  }
-  cell.classList.add("path");
-  cell.style.setProperty("--delay", index);
-});
