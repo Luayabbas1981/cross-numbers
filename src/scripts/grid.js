@@ -1,12 +1,11 @@
 // Game values
 export const cellsArray = [];
 export const pathArray = [];
-export const coords = 9;
+export const coords = 9; // always odd number 
 export const rows = coords;
 export const columns = coords;
 
 export function generateGameGrid() {
-    // Game elements
     const gameField = document.querySelector(".game-field");
     gameField.style.setProperty("--rows", rows);
     gameField.style.setProperty("--columns", columns);

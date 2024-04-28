@@ -15,6 +15,7 @@ grid.coords;
 grid.rows;
 grid.columns;
 
+// Generate game grid and expressions path
 grid.generateGameGrid();
 grid.generatePath();
 // Declaration
