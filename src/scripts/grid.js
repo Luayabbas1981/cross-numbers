@@ -7,7 +7,6 @@ let targetValue = null;
 // Game values
 const cellsArray = [];
 const pathArray = [];
-const net = 7;
 const rows = 7;
 const columns = 7;
 
