@@ -11,7 +11,7 @@ body {
 }
 
 .game-field {
-    height: 80vh;
+    height: 70vh;
     aspect-ratio: 1;
     padding: 1rem;
 }
