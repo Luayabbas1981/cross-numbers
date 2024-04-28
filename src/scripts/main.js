@@ -6,7 +6,17 @@ import {
   // generateExpression,
   generateExpressionArray,
 } from "./helper.js";
+import * as grid from "./grid.js";
 
+// Game values
+grid.cellsArray;
+grid.pathArray;
+grid.coords;
+grid.rows;
+grid.columns;
+
+grid.generateGameGrid();
+grid.generatePath();
 // Declaration
 const startingValueEl = document.querySelector(".starting-value");
 const currentValueEl = document.querySelector(".current-value");
@@ -16,7 +26,6 @@ const newGameButton = document.querySelector("#newGameBtn");
 const checkZone = document.querySelector(".model__check ");
 const expressionsZone = document.querySelector(".model__expressions");
 const resultEl = document.querySelector(".model__result");
-
 // event listeners
 newGameButton.addEventListener("click", startGame);
 
@@ -35,14 +44,17 @@ function startGame() {
       startingValue = getRandomIntInclusive(min, max);
       maxValue = max;
       operatorString = "+";
-      numExpression = 1
+      numExpression = 1;
     } else {
       min = gameLevel;
-      max = (gameLevel * 5) - 1;
+      max = gameLevel * 5 - 1;
       startingValue = getRandomIntInclusive(min, max);
       maxValue = Math.ceil((startingValue + max) / 2);
       operatorString = "";
-      numExpression = gameLevel < 6 ? getRandomIntInclusive(gameLevel, (gameLevel + 1)) : getRandomIntInclusive((gameLevel - 1), (gameLevel));
+      numExpression =
+        gameLevel < 6
+          ? getRandomIntInclusive(gameLevel, gameLevel + 1)
+          : getRandomIntInclusive(gameLevel - 1, gameLevel);
     }
     // console.log({ min, max, startingValue, maxValue, numExpression });
 
@@ -71,15 +83,13 @@ function startGame() {
       expressionsZone.appendChild(expDiv);
     }
     dragDropExpression();
-
   } catch (error) {
     resultEl.textContent = "Error: " + error.message;
   }
 }
 
 function dragDropExpression() {
-  const draggableExpressionEls =
-    document.getElementsByClassName("expression");
+  const draggableExpressionEls = document.getElementsByClassName("expression");
   for (const draggableExpEl of draggableExpressionEls) {
     draggableExpEl.addEventListener("dragstart", (e) => {
       // console.log(e.target);
@@ -95,13 +105,12 @@ function dragDropExpression() {
     e.preventDefault();
     const expId = e.dataTransfer.getData("expId");
     // console.log(expId);
-    const draggableExpression = document.getElementById(expId)
-    e.target.appendChild(draggableExpression)
-  })
+    const draggableExpression = document.getElementById(expId);
+    e.target.appendChild(draggableExpression);
+  });
 
-  checkZone.addEventListener("dragend", checkPlayGame)
+  checkZone.addEventListener("dragend", checkPlayGame);
 }
-
 
 function checkPlayGame() {
   // alert("check button clicked");
@@ -109,7 +118,7 @@ function checkPlayGame() {
   for (const ex of checkZone.children) {
     expressions.push(ex.innerHTML);
   }
-  const startingValue = startingValueEl.textContent
+  const startingValue = startingValueEl.textContent;
   const targetValue = Number(targetValueEl.textContent);
   const checkObject = isTargetValueReached(
     startingValue,
@@ -118,10 +127,11 @@ function checkPlayGame() {
   );
   // console.log(checkObject);
   const { currentValue, targetReached } = checkObject;
-  currentValueEl.textContent = !Number.isInteger(currentValue) ? currentValue.toFixed(2) : currentValue;
+  currentValueEl.textContent = !Number.isInteger(currentValue)
+    ? currentValue.toFixed(2)
+    : currentValue;
   if (targetReached && expressionsZone.children.length === 0) {
     resultEl.innerHTML = "GREAT! 🤩";
-
   } else if (!targetReached && expressionsZone.children.length === 0) {
     currentValueEl.classList.add("shake-horizontal");
     setTimeout(() => {

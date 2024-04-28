@@ -28,6 +28,7 @@ body {
     animation: create-path 1s ease-in-out forwards;
     animation-delay: calc(0.2s * var(--delay));
     opacity: 0;
+    
 }
 @keyframes create-path {
     to {
@@ -38,10 +39,14 @@ body {
     width: 90% ;
     height: 90%;
 }
-.starting-value {
-   
-   border: 3px solid rgb(246, 246, 244);
+.starting-value ,.target-value{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border: 3px solid;
    border-radius: 50%;
+   color: #fff;
+   border-color: #fff;
 }
 
 .current-value {
@@ -49,11 +54,12 @@ body {
 }
 
 .target-value {
-    border-radius: 50%;
-    border: 3px solid rgb(255, 0, 0);
+   border-color: green;
 }
 
-  
+#newGameBtn{
+    background-color: yellow;
+}
 
 
 
