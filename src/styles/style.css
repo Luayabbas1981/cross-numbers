@@ -6,7 +6,7 @@
 
 body {
     padding: 2rem;
-    background: radial-gradient(ellipse at 94% 49%, #2b3244 0, rgba(43, 50, 68, 0) 64%), radial-gradient(ellipse at 38% 89%, #2b3244 14%, #000 74%);
+    background: radial-gradient(ellipse at 94% 49%, #363f57 0, rgba(50, 59, 82, 0) 64%), radial-gradient(ellipse at 38% 89%, #323a50 14%, #151515 74%);
     height: 100dvh;
 }
 
