@@ -91,15 +91,15 @@ function generatePath() {
         break;
       case "up-right":
         initX = (coords - 5) / 2;
-        initY = (coords - 5) / 2 + 4;
+        initY = (coords - 5) / 2 + 4  // Directions length;
         break;
       case "down-left":
-        initX = (coords - 5) / 2 + 4;
+        initX = (coords - 5) / 2 + 4  // Directions length;
         initY = (coords - 5) / 2;
         break;
       case "down-right":
-        initX = (coords - 5) / 2 + 4;
-        initY = (coords - 5) / 2 + 4;
+        initX = (coords - 5) / 2 + 4  // Directions length;
+        initY = (coords - 5) / 2 + 4  // Directions length;
         break;
     }
     let id = `${initX}-${initY}`;
