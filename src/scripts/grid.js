@@ -7,7 +7,7 @@ let targetValue = null;
 // Game values
 const cellsArray = [];
 const pathArray = [];
-let coords = 9;
+let coords = 11;
 const rows = coords;
 const columns = coords;
 
@@ -90,30 +90,30 @@ function generatePath() {
     (cell) => cell.id === `${(rows - 1) / 2}-${(columns - 1) / 2}`
   );
   targetValue.classList.add("target-value");
+
+  // Calculate path position 
   function calculatePosition(startPosition) {
-    let initX = null;
-    let initY = null;
+    const offset = (coords - 5) / 2;
+    let initX = offset;
+    let initY = offset;
+    const adjustment = 4; // directions length
     switch (startPosition) {
-      case "up-left":
-        initX = (coords - 5) / 2;
-        initY = (coords - 5) / 2;
-        break;
       case "up-right":
-        initX = (coords - 5) / 2;
-        initY = (coords - 5) / 2 + 4; // 4 (Directions length);
+        initY += adjustment;
         break;
       case "down-left":
-        initX = (coords - 5) / 2 + 4; // 4 (Directions length);
-        initY = (coords - 5) / 2;
+        initX += adjustment;
         break;
       case "down-right":
-        initX = (coords - 5) / 2 + 4; // 4 (Directions length);
-        initY = (coords - 5) / 2 + 4; // 4  (Directions length);
+        initX += adjustment;
+        initY += adjustment;
         break;
     }
-    let id = `${initX}-${initY}`;
+    let id = `${Math.max(0, Math.min(coords - 1, initX))}-${Math.max(0, Math.min(coords - 1, initY))}`;
     return id;
   }
+
+  // Start path fun
   changeDirectionAfter = directions.length;
   startCellId = startValue.id.split("-");
   function startPath() {
