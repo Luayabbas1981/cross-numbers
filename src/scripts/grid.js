@@ -7,7 +7,7 @@ let targetValue = null;
 // Game values
 const cellsArray = [];
 const pathArray = [];
-let coords = 9;
+let coords = 13;
 const rows = coords;
 const columns = coords;
 
@@ -91,15 +91,15 @@ function generatePath() {
         break;
       case "up-right":
         initX = (coords - 5) / 2;
-        initY = (coords - 5) / 2 + 4  // 4 (Directions length);
+        initY = (coords - 5) / 2 + 4; // 4 (Directions length);
         break;
       case "down-left":
-        initX = (coords - 5) / 2 + 4  // 4 (Directions length);
+        initX = (coords - 5) / 2 + 4; // 4 (Directions length);
         initY = (coords - 5) / 2;
         break;
       case "down-right":
-        initX = (coords - 5) / 2 + 4  // 4 (Directions length);
-        initY = (coords - 5) / 2 + 4  // 4  (Directions length);
+        initX = (coords - 5) / 2 + 4; // 4 (Directions length);
+        initY = (coords - 5) / 2 + 4; // 4  (Directions length);
         break;
     }
     let id = `${initX}-${initY}`;
@@ -107,50 +107,50 @@ function generatePath() {
   }
   changeDirectionAfter = directions.length;
   startCellId = startValue.id.split("-");
-
-  for (let i = 0; i < changeDirectionAfter; i++) {
-    let nextDirection = newDirectionOrder[i];
-    if (i > 2) {
-      break;
-    }
-    for (let x = 0; x < changeDirectionAfter; x++) {
-      nextCell = cellsArray.find((cell) => {
-        if (i === 2 && x > 2) {
-          return;
-        } else if (i === 2 && x > 1) {
-          if (nextDirection.id === "up-left") {
-            return cell.id === `${+startCellId[0]}-${+startCellId[1] + 1}`;
-          } else if (nextDirection.id === "up-right") {
-            return cell.id === `${+startCellId[0] + 1}-${+startCellId[1]}`;
-          } else if (nextDirection.id === "down-right") {
-            return cell.id === `${+startCellId[0]}-${+startCellId[1] - 1}`;
-          } else if (nextDirection.id === "down-left") {
-            return cell.id === `${+startCellId[0] - 1}-${+startCellId[1]}`;
-          }
-        } else {
-          return (
-            cell.id ===
-            `${+startCellId[0] + nextDirection.x}-${
-              +startCellId[1] + nextDirection.y
-            }`
-          );
-        }
-      });
-      if (nextCell) {
-        startCellId = nextCell.id.split("-");
-        pathArray.push(nextCell);
-      } else {
+  function startPath() {
+    for (let i = 0; i < changeDirectionAfter; i++) {
+      let nextDirection = newDirectionOrder[i];
+      if (i > 2) {
         break;
+      }
+      for (let x = 0; x < changeDirectionAfter; x++) {
+        nextCell = cellsArray.find((cell) => {
+          if (i === 2 && x > 2) {
+            return;
+          } else if (i === 2 && x > 1) {
+            if (nextDirection.id === "up-left") {
+              return cell.id === `${+startCellId[0]}-${+startCellId[1] + 1}`;
+            } else if (nextDirection.id === "up-right") {
+              return cell.id === `${+startCellId[0] + 1}-${+startCellId[1]}`;
+            } else if (nextDirection.id === "down-right") {
+              return cell.id === `${+startCellId[0]}-${+startCellId[1] - 1}`;
+            } else if (nextDirection.id === "down-left") {
+              return cell.id === `${+startCellId[0] - 1}-${+startCellId[1]}`;
+            }
+          } else {
+            return (
+              cell.id ===
+              `${+startCellId[0] + nextDirection.x}-${
+                +startCellId[1] + nextDirection.y
+              }`
+            );
+          }
+        });
+        if (nextCell) {
+          startCellId = nextCell.id.split("-");
+          pathArray.push(nextCell);
+        } else {
+          break;
+        }
       }
     }
   }
-  
+  startPath();
 }
 generatePath();
 
-
 // Add path class and delay var for path array elements
 pathArray.forEach((cell, index) => {
-    cell.classList.add("path");
-    cell.style.setProperty("--delay", index);
-  });
+  cell.classList.add("path");
+  cell.style.setProperty("--delay", index);
+});
