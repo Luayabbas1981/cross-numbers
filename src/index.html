@@ -4,44 +4,58 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Bootstrap link -->
-    <!-- <link
+    <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
-    /> -->
+    />
     <!-- Font awesome -->
-    <!-- <link
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
       integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    /> -->
+    />
     <link rel="stylesheet" href="styles/style.css" />
     <title>Test Page</title>
   </head>
   <body>
-    <h1>Test Basic Model</h1>
+    <div class="game d-none">
+      <h1>Test Basic Model</h1>
     <div class="model">
       <div class="model__items">
-        <div class="model__item starting-value">
-          StartingValue
-        </div>
+        <div class="model__item starting-value">StartingValue</div>
         <div class="model__item current-value">CurrentValue</div>
         <div class="model__item target-value">TargetValue</div>
       </div>
       <div class="model__controller">
         <label for="game-level">Game Level</label>
-        <input type="number" id="game-level" min="0" max="10" step="1" value="0">
+        <input
+          type="number"
+          id="game-level"
+          min="0"
+          max="10"
+          step="1"
+          value="0"
+        />
         <button id="newGameBtn" class="btn">New Game</button>
       </div>
       <div class="model__check"></div>
       <div class="model__expressions"></div>
       <div class="model__result"></div>
     </div>
+    </div>
+
+
+
+    <div class="game-wrapper h-100 d-flex justify-content-center align-items-center">
+      <div class="game-field">
+      </div>
+    </div>
     <!-- JavaScript -->
     <!-- <script type="module" src="./test.js"></script> -->
-    <script type="module" src="scripts/main.js"></script>
+    <script type="module" src="scripts/grid.js"></script>
   </body>
 </html>

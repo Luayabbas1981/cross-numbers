@@ -38,7 +38,7 @@ function startGame() {
       numExpression = 1
     } else {
       min = gameLevel;
-      max = (gameLevel * 10) - 1;
+      max = (gameLevel * 5) - 1;
       startingValue = getRandomIntInclusive(min, max);
       maxValue = Math.ceil((startingValue + max) / 2);
       operatorString = "";
