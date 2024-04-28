@@ -1,7 +1,3 @@
-// Game elements
-const gameWrapper = document.querySelector(".game-wrapper");
-const gameField = document.querySelector(".game-field");
-
 // Game values
 const cellsArray = [];
 const pathArray = [];
@@ -10,6 +6,8 @@ const rows = coords;
 const columns = coords;
 
 function generateGameGrid() {
+  // Game elements
+  const gameField = document.querySelector(".game-field");
   gameField.style.setProperty("--rows", rows);
   gameField.style.setProperty("--columns", columns);
   for (let r = 0; r < rows; r++) {
