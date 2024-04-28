@@ -68,7 +68,7 @@ function generatePath() {
   );
   targetValue.classList.add("target-value");
 
-  const changeDirectionAfter = 4;
+  const changeDirectionAfter = directions.length;
   let startCellId = startValue.id.split("-");
   let nextCell;
   for (let i = 0; i < changeDirectionAfter; i++) {
