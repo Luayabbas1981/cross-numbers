@@ -1,9 +1,7 @@
 // Game elements
 const gameWrapper = document.querySelector(".game-wrapper");
 const gameField = document.querySelector(".game-field");
-let startValue = null;
-let currentValue = null;
-let targetValue = null;
+
 // Game values
 const cellsArray = [];
 const pathArray = [];
@@ -30,8 +28,9 @@ function generateGameGrid() {
 generateGameGrid();
 
 function generatePath() {
+  let startValue = null;
+  let targetValue = null;
   let randomDirectionIndex = null;
-  let randomDirection = null;
   let newDirectionOrder = [];
   let changeDirectionAfter = null;
   let startCellId = null;
@@ -69,7 +68,6 @@ function generatePath() {
     },
   ];
   randomDirectionIndex = Math.floor(Math.random() * directions.length);
-  randomDirection = directions[randomDirectionIndex];
 
   function loopArrayFromStart() {
     let index = randomDirectionIndex;
@@ -81,7 +79,6 @@ function generatePath() {
 
   loopArrayFromStart();
 
-  
   // Calculate path position
   function calculatePosition(startPosition) {
     const offset = (coords - 5) / 2;
@@ -106,17 +103,17 @@ function generatePath() {
     )}`;
     return id;
   }
-// Set starting value
-startValue = cellsArray.find(
+  // Set starting value
+  startValue = cellsArray.find(
     (cell) => cell.id === calculatePosition(newDirectionOrder[3].id)
-);
-startValue.classList.add("starting-value");
-    
-// Set target value
-targetValue = cellsArray.find(
-  (cell) => cell.id === `${(rows - 1) / 2}-${(columns - 1) / 2}`
-);
-targetValue.classList.add("target-value");
+  );
+  startValue.classList.add("starting-value");
+
+  // Set target value
+  targetValue = cellsArray.find(
+    (cell) => cell.id === `${(rows - 1) / 2}-${(columns - 1) / 2}`
+  );
+  targetValue.classList.add("target-value");
 
   // Start path fun
   changeDirectionAfter = directions.length;
