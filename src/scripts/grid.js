@@ -129,17 +129,29 @@ function generatePath() {
             return;
           } else if (i === 2 && x > 1) {
             if (nextDirection.id === "up-left") {
-              nextCell.innerHTML = `<img src="../../images/neon-arrow-right.png"/>`;
-              return cell.id === `${+startCellId[0]}-${+startCellId[1] + 1}`;
+              if (cell.id === `${+startCellId[0]}-${+startCellId[1] + 1}`) {
+                cell.classList.add("right");
+                return true;
+              }
+              return false;
             } else if (nextDirection.id === "up-right") {
-              nextCell.innerHTML = `<img src="../../images/neon-arrow-down.png"/>`;
-              return cell.id === `${+startCellId[0] + 1}-${+startCellId[1]}`;
+              if (cell.id === `${+startCellId[0] + 1}-${+startCellId[1]}`) {
+                cell.classList.add("down");
+                return true;
+              }
+              return false;
             } else if (nextDirection.id === "down-right") {
-              nextCell.innerHTML = `<img src="../../images/neon-arrow-left.png"/>`;
-              return cell.id === `${+startCellId[0]}-${+startCellId[1] - 1}`;
+              if (cell.id === `${+startCellId[0]}-${+startCellId[1] - 1}`) {
+                cell.classList.add("left");
+                return true;
+              }
+              return false;
             } else if (nextDirection.id === "down-left") {
-              nextCell.innerHTML = `<img src="../../images/neon-arrow-up.png"/>`;
-              return cell.id === `${+startCellId[0] - 1}-${+startCellId[1]}`;
+              if (cell.id === `${+startCellId[0] - 1}-${+startCellId[1]}`) {
+                cell.classList.add("up");
+                return true;
+              }
+              return false;
             }
           } else {
             return (
