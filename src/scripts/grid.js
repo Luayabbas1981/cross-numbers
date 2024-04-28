@@ -81,16 +81,7 @@ function generatePath() {
 
   loopArrayFromStart();
 
-  // Set starting value
-  startValue = document.getElementById(randomDirection.value);
-  startValue.classList.add("starting-value");
-
-  // Set target value
-  targetValue = cellsArray.find(
-    (cell) => cell.id === `${(rows - 1) / 2}-${(columns - 1) / 2}`
-  );
-  targetValue.classList.add("target-value");
-
+  
   // Calculate path position
   function calculatePosition(startPosition) {
     const offset = (coords - 5) / 2;
@@ -115,6 +106,17 @@ function generatePath() {
     )}`;
     return id;
   }
+// Set starting value
+startValue = cellsArray.find(
+    (cell) => cell.id === calculatePosition(newDirectionOrder[3].id)
+);
+startValue.classList.add("starting-value");
+    
+// Set target value
+targetValue = cellsArray.find(
+  (cell) => cell.id === `${(rows - 1) / 2}-${(columns - 1) / 2}`
+);
+targetValue.classList.add("target-value");
 
   // Start path fun
   changeDirectionAfter = directions.length;
