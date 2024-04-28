@@ -34,6 +34,8 @@ function generatePath() {
   let randomDirection = null;
   let newDirectionOrder = [];
   let changeDirectionAfter = null;
+  let startCellId = null;
+  let nextCell;
 
   const directions = [
     {
@@ -67,6 +69,7 @@ function generatePath() {
       newDirectionOrder.push(directions[index]);
     } while (index !== randomDirectionIndex);
   }
+
   loopArrayFromStart();
 
   // Set starting value
@@ -103,8 +106,8 @@ function generatePath() {
     return id;
   }
   changeDirectionAfter = directions.length;
-  let startCellId = startValue.id.split("-");
-  let nextCell;
+  startCellId = startValue.id.split("-");
+
   for (let i = 0; i < changeDirectionAfter; i++) {
     let nextDirection = newDirectionOrder[i];
     if (i > 2) {
@@ -141,10 +144,13 @@ function generatePath() {
       }
     }
   }
-  // Add path class and delay var for path array elements
-  pathArray.forEach((cell, index) => {
+  
+}
+generatePath();
+
+
+// Add path class and delay var for path array elements
+pathArray.forEach((cell, index) => {
     cell.classList.add("path");
     cell.style.setProperty("--delay", index);
   });
-}
-generatePath();
