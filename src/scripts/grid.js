@@ -7,8 +7,9 @@ let targetValue = null;
 // Game values
 const cellsArray = [];
 const pathArray = [];
-const rows = 7;
-const columns = 7;
+let coords = 7;
+const rows = coords;
+const columns = coords;
 
 function generateGameGrid() {
   gameField.style.setProperty("--rows", rows);
@@ -68,25 +69,27 @@ function generatePath() {
   );
   targetValue.classList.add("target-value");
 
-  const changeDirectionAfter = directions.length;
+  const changeDirectionAfter = (coords - 1) / 2 + 1;
   let startCellId = startValue.id.split("-");
   let nextCell;
   for (let i = 0; i < changeDirectionAfter; i++) {
     let nextDirection = newDirectionOrder[i];
-
+    if (i > 2) {
+      break;
+    }
     for (let x = 0; x < changeDirectionAfter; x++) {
       nextCell = cellsArray.find((cell) => {
-        if (i === 3 && x > 2) {
+        if (i === 2 && x > 2) {
           return;
-        } else if (i === 3 && x > 1) {
+        } else if (i === 2 && x > 1) {
           if (nextDirection.position === "up-left") {
-            return cell.id === "3-2";
+            return cell.id === `${+startCellId[0]}-${+startCellId[1] + 1}`;
           } else if (nextDirection.position === "up-right") {
-            return cell.id === "2-3";
+            return cell.id === `${+startCellId[0] + 1}-${+startCellId[1]}`;
           } else if (nextDirection.position === "down-right") {
-            return cell.id === "3-4";
+            return cell.id === `${+startCellId[0]}-${+startCellId[1] - 1}`;
           } else if (nextDirection.position === "down-left") {
-            return cell.id === "4-3";
+            return cell.id === `${+startCellId[0] - 1}-${+startCellId[1]}`;
           }
         } else {
           return (
@@ -106,11 +109,9 @@ function generatePath() {
     }
   }
   // Add path class and delay var for path array elements
-  pathArray.forEach((cell, index)=>{
-    cell.classList.add("path")
-    cell.style.setProperty("--delay",index)
-  })
-  console.log(pathArray);
+  pathArray.forEach((cell, index) => {
+    cell.classList.add("path");
+    cell.style.setProperty("--delay", index);
+  });
 }
 generatePath();
-
