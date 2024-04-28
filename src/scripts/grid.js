@@ -31,7 +31,10 @@ generateGameGrid();
 
 
 function generatePath() {
-  
+    let randomDirectionIndex
+    let randomDirection
+    let newDirectionOrder = [];
+    
   const directions = [
     {
       id: "up-left",
@@ -54,9 +57,9 @@ function generatePath() {
     },
     { id: "down-left", value: calculatePosition("down-left"), x: 0, y: -1 },
   ];
-  let randomDirectionIndex = Math.floor(Math.random() * directions.length);
-  let randomDirection = directions[randomDirectionIndex];
-  let newDirectionOrder = [];
+   randomDirectionIndex = Math.floor(Math.random() * directions.length);
+   randomDirection = directions[randomDirectionIndex];
+  
   function loopArrayFromStart() {
     let index = randomDirectionIndex;
     do {
