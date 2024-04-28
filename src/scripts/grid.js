@@ -7,7 +7,7 @@ let targetValue = null;
 // Game values
 const cellsArray = [];
 const pathArray = [];
-let coords = 7;
+let coords = 9;
 const rows = coords;
 const columns = coords;
 
@@ -29,23 +29,30 @@ function generateGameGrid() {
 }
 generateGameGrid();
 
-function generatePath() {
-  function getNumLength(n) {
-    let number = parseInt("1".repeat(n));
-    return number.toString().length - 2;
-  }
 
+function generatePath() {
+  
   const directions = [
-    { position: "up-left", value: "1-1", x: -1, y: 0 },
-    { position: "up-right", value: `1-${getNumLength(columns)}`, x: 0, y: 1 },
+    {
+      id: "up-left",
+      value: calculatePosition("up-left"),
+      x: -1,
+      y: 0,
+    },
+    {
+      id: "up-right",
+      value: calculatePosition("up-right"),
+      x: 0,
+      y: 1,
+    },
 
     {
-      position: "down-right",
-      value: `${getNumLength(rows)}-${getNumLength(columns)}`,
+      id: "down-right",
+      value: calculatePosition("down-right"),
       x: 1,
       y: 0,
     },
-    { position: "down-left", value: `${getNumLength(rows)}-1`, x: 0, y: -1 },
+    { id: "down-left", value: calculatePosition("down-left"), x: 0, y: -1 },
   ];
   let randomDirectionIndex = Math.floor(Math.random() * directions.length);
   let randomDirection = directions[randomDirectionIndex];
@@ -68,8 +75,31 @@ function generatePath() {
     (cell) => cell.id === `${(rows - 1) / 2}-${(columns - 1) / 2}`
   );
   targetValue.classList.add("target-value");
-
-  const changeDirectionAfter = (coords - 1) / 2 + 1;
+  function calculatePosition(startPosition) {
+    let initX = null;
+    let initY = null;
+    switch (startPosition) {
+      case "up-left":
+        initX = (coords - 5) / 2;
+        initY = (coords - 5) / 2;
+        break;
+      case "up-right":
+        initX = (coords - 5) / 2;
+        initY =  (coords - 5) / 2 + 4;
+        break;
+      case "down-left":
+        initX = (coords - 5) / 2 + 4;
+        initY = (coords - 5) / 2 ;
+        break;
+      case "down-right":
+        initX = (coords - 5) / 2 + 4;
+        initY = (coords - 5) / 2 + 4;
+        break;
+    }
+    let id = `${initX}-${initY}`;
+    return id;
+  }
+  const changeDirectionAfter = directions.length;
   let startCellId = startValue.id.split("-");
   let nextCell;
   for (let i = 0; i < changeDirectionAfter; i++) {
@@ -82,13 +112,13 @@ function generatePath() {
         if (i === 2 && x > 2) {
           return;
         } else if (i === 2 && x > 1) {
-          if (nextDirection.position === "up-left") {
+          if (nextDirection.id === "up-left") {
             return cell.id === `${+startCellId[0]}-${+startCellId[1] + 1}`;
-          } else if (nextDirection.position === "up-right") {
+          } else if (nextDirection.id === "up-right") {
             return cell.id === `${+startCellId[0] + 1}-${+startCellId[1]}`;
-          } else if (nextDirection.position === "down-right") {
+          } else if (nextDirection.id === "down-right") {
             return cell.id === `${+startCellId[0]}-${+startCellId[1] - 1}`;
-          } else if (nextDirection.position === "down-left") {
+          } else if (nextDirection.id === "down-left") {
             return cell.id === `${+startCellId[0] - 1}-${+startCellId[1]}`;
           }
         } else {
