@@ -28,7 +28,6 @@ const targetValueContainerEl = document.querySelector(
 const targetValueEl = document.querySelector(".target-value");
 const gameLevelInput = document.getElementById("game-level");
 const newGameButton = document.querySelector("#newGameBtn");
-const checkZone = document.querySelectorAll(".model__check ");
 const expressionsZone = document.querySelector(".model__expressions");
 const resultEl = document.querySelector(".model__result");
 // event listeners
@@ -50,11 +49,6 @@ function startGame() {
       maxValue = max;
       operatorString = "+";
       numExpression = 1;
-      startingValueEl.classList.add("show-starting-target-value");
-      targetValueContainerEl.classList.add("show-starting-target-value");
-      grid.pathArray.forEach((cell) => {
-        cell.classList.add("create-path");
-      });
     } else {
       min = gameLevel;
       max = gameLevel * 5 - 1;
@@ -67,8 +61,14 @@ function startGame() {
           : getRandomIntInclusive(gameLevel - 1, gameLevel);
     }
     // console.log({ min, max, startingValue, maxValue, numExpression });
-    checkZone.forEach((check) => {
-      check.innerHTML = "";
+    startingValueEl.classList.add("show-starting-target-value");
+    targetValueContainerEl.classList.add("show-starting-target-value");
+
+    grid.pathArray.forEach((block) => {
+      block.innerHTML = "";
+      block.classList.add("create-path");
+      block.classList.remove("model__check");
+      block.style = "background-color:#008c9e";
     });
     resultEl.innerHTML = "";
 
@@ -94,13 +94,38 @@ function startGame() {
       expDiv.textContent = `${expressionArray[i]}`;
       expressionsZone.appendChild(expDiv);
     }
-    
+    // Generate check zone
+
+    let previousExpressions = new Set();
+    function distributeExpressions() {
+      let randomPosition = null;
+      for (let i = 0; i < expressionArray.length; i++) {
+        do {
+          randomPosition = getRandomIntInclusive(1, grid.pathArray.length);
+        } while (previousExpressions.has(randomPosition));
+        previousExpressions.add(randomPosition);
+        grid.pathArray.forEach((block, index) => {
+          if (randomPosition === index) {
+            block.classList.remove(
+              "up-left",
+              "up-right",
+              "down-left",
+              "down-right"
+            );
+            block.classList.add("model__check");
+            block.style = "background-color:#7f7133";
+          }
+        });
+      }
+    }
+    distributeExpressions();
     dragDropExpression();
   } catch (error) {
     resultEl.textContent = "Error: " + error.message;
   }
 }
 
+const checkZone = document.querySelectorAll(".model__check ");
 function dragDropExpression() {
   const draggableExpressionEls = document.getElementsByClassName("expression");
   for (const draggableExpEl of draggableExpressionEls) {
@@ -122,6 +147,7 @@ function dragDropExpression() {
       e.preventDefault();
       const expId = e.dataTransfer.getData("expId");
       // console.log(expId);
+
       const draggableExpression = document.getElementById(expId);
       e.target.appendChild(draggableExpression);
     });
