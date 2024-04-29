@@ -83,6 +83,7 @@ header {
 
 .model__check{
     color: #fff;
+    background-color: red;
 }
 /* Set current position */
 .current-value {

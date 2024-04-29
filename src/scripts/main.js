@@ -68,7 +68,6 @@ function startGame() {
       block.innerHTML = "";
       block.classList.add("create-path");
       block.classList.remove("model__check");
-      block.style = "background-color:#008c9e";
     });
     resultEl.innerHTML = "";
 
@@ -96,16 +95,18 @@ function startGame() {
     }
     // Generate check zone
 
-    let previousExpressions = new Set();
+    const previousExpressions = new Set();
+    previousExpressions.clear();
     function distributeExpressions() {
       let randomPosition = null;
       for (let i = 0; i < expressionArray.length; i++) {
         do {
-          randomPosition = getRandomIntInclusive(1, grid.pathArray.length);
+          randomPosition = getRandomIntInclusive(0, grid.pathArray.length - 1);
         } while (previousExpressions.has(randomPosition));
         previousExpressions.add(randomPosition);
+        console.log(previousExpressions);
         grid.pathArray.forEach((block, index) => {
-          if (randomPosition === index) {
+          if (previousExpressions.has(index)) {
             block.classList.remove(
               "up-left",
               "up-right",
@@ -113,7 +114,6 @@ function startGame() {
               "down-right"
             );
             block.classList.add("model__check");
-            block.style = "background-color:#7f7133";
           }
         });
       }
