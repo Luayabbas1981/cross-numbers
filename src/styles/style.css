@@ -46,9 +46,11 @@ header {
     align-items: center;
     border: 1px solid #00e6ff;
     background-color: #008c9e;
-    animation: create-path 1s ease-in-out forwards;
-    animation-delay: calc(0.2s * var(--delay));
     opacity: 0;
+}
+.create-path{
+    animation: create-path  1s ease-in-out forwards;
+    animation-delay: calc(0.2s * var(--delay));
 }
 @keyframes create-path {
     to {
@@ -71,7 +73,7 @@ header {
     scale: 0;
 }
 .show-starting-target-value {
-    animation: show-values 1s ease-in-out forwards;
+    animation: show-values .3s ease-in-out forwards;
 }
 @keyframes show-values {
     to {

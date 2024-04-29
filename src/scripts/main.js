@@ -52,6 +52,9 @@ function startGame() {
       numExpression = 1;
       startingValueEl.classList.add("show-starting-target-value");
       targetValueContainerEl.classList.add("show-starting-target-value");
+      grid.pathArray.forEach((cell)=>{
+        cell.classList.add("create-path")
+      })
     } else {
       min = gameLevel;
       max = gameLevel * 5 - 1;
