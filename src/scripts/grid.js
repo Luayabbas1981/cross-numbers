@@ -126,7 +126,38 @@ export function generatePath() {
           if (i === 2 && x > 2) {
             return;
           } else if (i === 2 && x > 1) {
-            if (nextDirection.id === "up-left") {
+            i = 3;
+            x = 3;
+          } else {
+            return (
+              cell.id ===
+              `${+startCellId[0] + nextDirection.x}-${
+                +startCellId[1] + nextDirection.y
+              }`
+            );
+          }
+        });
+        if (nextCell) {
+          startCellId = nextCell.id.split("-");
+          pathArray.push(nextCell);
+          nextCell.classList.add(newDirectionOrder[i].id);
+        } else {
+          break;
+        }
+      }
+    }
+    // Add path class and delay var for path array elements
+    pathArray.forEach((cell, index) => {
+      cell.classList.add("path");
+      cell.style.setProperty("--delay", index);
+      if (cell.classList.contains("up")) {
+      }
+    });
+  }
+  startPath();
+}
+
+/*  if (nextDirection.id === "up-left") {
               if (cell.id === `${+startCellId[0]}-${+startCellId[1] + 1}`) {
                 cell.classList.add("right");
                 return true;
@@ -150,30 +181,4 @@ export function generatePath() {
                 return true;
               }
               return false;
-            }
-          } else {
-            return (
-              cell.id ===
-              `${+startCellId[0] + nextDirection.x}-${
-                +startCellId[1] + nextDirection.y
-              }`
-            );
-          }
-        });
-        if (nextCell) {
-          startCellId = nextCell.id.split("-");
-          pathArray.push(nextCell);
-          nextCell.classList.add(newDirectionOrder[i].id);
-        } else {
-          break;
-        }
-      }
-    }
-    // Add path class and delay var for path array elements
-    pathArray.forEach((cell, index) => {
-      cell.classList.add("path", "model__check");
-      cell.style.setProperty("--delay", index);
-    });
-  }
-  startPath();
-}
+            } */

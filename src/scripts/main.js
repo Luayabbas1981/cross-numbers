@@ -106,12 +106,6 @@ function startGame() {
         previousExpressions.add(randomPosition);
         grid.pathArray.forEach((block, index) => {
           if (previousExpressions.has(index)) {
-            block.classList.remove(
-              "up-left",
-              "up-right",
-              "down-left",
-              "down-right"
-            );
             block.classList.add("model__check");
           }
         });

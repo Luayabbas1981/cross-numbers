@@ -81,13 +81,32 @@ header {
     }
 }
 
+
+/* Set images */
+.up-left{  
+    background: url(../../images/neon-arrow-up.png)no-repeat center;
+}
+.up-right{
+    background: url(../../images/neon-arrow-right.png)no-repeat center;
+    
+}
+.down-right{
+    background: url(../../images/neon-arrow-down.png)no-repeat center;
+    
+}
+.down-left{
+    background: url(../../images/neon-arrow-left.png)no-repeat center;
+
+}
 .model__check{
+    background: none;
     color: #fff;
     background-color: red;
 }
 /* Set current position */
 .current-value {
     scale: 0.8;
+    background: none;
 }
 .current-value.down-left,
 .current-value.up-left {
@@ -101,6 +120,12 @@ header {
 .current-value.up-right {
     left: 4%;
     bottom: 4%;
+}
+
+.path:not(.model__check){
+    border: none;
+    background-color: transparent;
+    background-size: 80% 80%;
 }
 
 #newGameBtn {
