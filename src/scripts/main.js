@@ -104,7 +104,6 @@ function startGame() {
           randomPosition = getRandomIntInclusive(0, grid.pathArray.length - 1);
         } while (previousExpressions.has(randomPosition));
         previousExpressions.add(randomPosition);
-        console.log(previousExpressions);
         grid.pathArray.forEach((block, index) => {
           if (previousExpressions.has(index)) {
             block.classList.remove(
