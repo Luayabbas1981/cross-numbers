@@ -1,6 +1,7 @@
 // Game values
 export const cellsArray = [];
 export const pathArray = [];
+export const newDirectionOrder = [];
 export const coords = 9; // always odd number
 export const rows = coords;
 export const columns = coords;
@@ -27,7 +28,6 @@ export function generatePath() {
   let startValue = null;
   let targetValue = null;
   let randomDirectionIndex = null;
-  let newDirectionOrder = [];
   let startCellId = null;
   let nextCell;
 

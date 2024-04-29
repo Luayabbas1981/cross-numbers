@@ -11,6 +11,7 @@ import * as grid from "./grid.js";
 // Game values
 grid.cellsArray;
 grid.pathArray;
+grid.newDirectionOrder;
 grid.coords;
 grid.rows;
 grid.columns;
