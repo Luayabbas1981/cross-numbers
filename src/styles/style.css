@@ -70,10 +70,19 @@ header {
     border-color: #fff;
 }
 
-.current-value {
-    position: absolute;
+/* Set current position */
+.down-left,
+.up-left {
+    right: 5%;
+    bottom: 5%;
+}
+.down-right {
+    right: 5%;
+    top: 5%;
+}
+.up-right {
     left: 5%;
-    bottom: 1%;
+    bottom: 5%;
 }
 
 .target-value-container {

@@ -108,8 +108,10 @@ export function generatePath() {
   targetValue = cellsArray.find(
     (cell) => cell.id === `${(rows - 1) / 2}-${(columns - 1) / 2}`
   );
+  console.log(newDirectionOrder);
   targetValue.classList.add("target-value-container");
   targetValue.innerHTML = ` <div class="target-value"> </div> <div class="current-value"></div>`;
+  targetValue.children[1].classList.add(newDirectionOrder[newDirectionOrder.length - 1].id,"position-absolute")
 
   // Start path fun
 
