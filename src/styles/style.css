@@ -41,6 +41,11 @@ header {
     width: calc(100% / var(--columns));
 }
 .path {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #00e6ff;
+    background-color: #008c9e;
     animation: create-path 1s ease-in-out forwards;
     animation-delay: calc(0.2s * var(--delay));
     opacity: 0;
@@ -57,11 +62,10 @@ header {
 .starting-value,
 .target-value-container {
     position: relative;
-    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid;
+    border: 1px solid;
     color: #fff;
     border-color: #fff;
 }
