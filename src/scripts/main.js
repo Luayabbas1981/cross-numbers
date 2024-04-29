@@ -147,9 +147,10 @@ function dragDropExpression() {
       e.preventDefault();
       const expId = e.dataTransfer.getData("expId");
       // console.log(expId);
-
-      const draggableExpression = document.getElementById(expId);
-      e.target.appendChild(draggableExpression);
+      if (e.target.classList.contains("model__check")) {
+        const draggableExpression = document.getElementById(expId);
+        e.target.appendChild(draggableExpression);
+      }
     });
   });
 
