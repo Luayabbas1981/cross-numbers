@@ -71,18 +71,21 @@ header {
 }
 
 /* Set current position */
+.current-value {
+    scale: 0.8;
+}
 .down-left,
 .up-left {
-    right: 5%;
-    bottom: 5%;
+    right: 4%;
+    bottom: 4%;
 }
 .down-right {
-    right: 5%;
-    top: 5%;
+    right: 4%;
+    top: 4%;
 }
 .up-right {
-    left: 5%;
-    bottom: 5%;
+    left: 4%;
+    bottom: 4%;
 }
 
 .target-value-container {
