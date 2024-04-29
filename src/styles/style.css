@@ -21,12 +21,12 @@ header {
     aspect-ratio: 1;
     padding: 1rem;
 }
-.model__check,
+
 .model__expressions,
 .model__controller,
 .model__result {
     width: 50%;
-    height: 5%;
+    height: 7%;
     display: flex;
     justify-content: space-around;
     align-items: center;

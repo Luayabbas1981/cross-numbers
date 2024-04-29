@@ -15,7 +15,7 @@ grid.newDirectionOrder;
 grid.coords;
 grid.rows;
 grid.columns;
-
+const expressionsArray = [];
 // Generate game grid and expressions path
 grid.generateGameGrid();
 grid.generatePath();
@@ -28,10 +28,9 @@ const targetValueContainerEl = document.querySelector(
 const targetValueEl = document.querySelector(".target-value");
 const gameLevelInput = document.getElementById("game-level");
 const newGameButton = document.querySelector("#newGameBtn");
-const checkZone = document.querySelector(".model__check ");
+const checkZone = document.querySelectorAll(".model__check ");
 const expressionsZone = document.querySelector(".model__expressions");
 const resultEl = document.querySelector(".model__result");
-console.log(targetValueEl);
 // event listeners
 newGameButton.addEventListener("click", startGame);
 
@@ -65,8 +64,9 @@ function startGame() {
           : getRandomIntInclusive(gameLevel - 1, gameLevel);
     }
     // console.log({ min, max, startingValue, maxValue, numExpression });
-
-    checkZone.innerHTML = "";
+    checkZone.forEach((check) => {
+      check.innerHTML = "";
+    });
     resultEl.innerHTML = "";
 
     const expressions = generateExpressionArray(
@@ -90,6 +90,7 @@ function startGame() {
       expDiv.setAttribute("draggable", true);
       expDiv.textContent = `${expressionArray[i]}`;
       expressionsZone.appendChild(expDiv);
+      expressionArray.push(expDiv);
     }
     dragDropExpression();
   } catch (error) {
@@ -105,27 +106,34 @@ function dragDropExpression() {
       e.dataTransfer.setData("expId", e.target.id);
     });
   }
-  checkZone.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = "move";
+
+  checkZone.forEach((check) => {
+    check.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = "move";
+    });
   });
 
-  checkZone.addEventListener("drop", (e) => {
-    e.preventDefault();
-    const expId = e.dataTransfer.getData("expId");
-    // console.log(expId);
-    const draggableExpression = document.getElementById(expId);
-    e.target.appendChild(draggableExpression);
+  checkZone.forEach((check) => {
+    check.addEventListener("drop", (e) => {
+      e.preventDefault();
+      const expId = e.dataTransfer.getData("expId");
+      // console.log(expId);
+      const draggableExpression = document.getElementById(expId);
+      e.target.appendChild(draggableExpression);
+    });
   });
 
-  checkZone.addEventListener("dragend", checkPlayGame);
+  checkZone.forEach((check) => {
+    check.addEventListener("dragend", checkPlayGame);
+  });
 }
 
 function checkPlayGame() {
   // alert("check button clicked");
   let expressions = [];
-  for (const ex of checkZone.children) {
-    expressions.push(ex.innerHTML);
+  for (const ex of checkZone) {
+    ex.innerHTML ? expressions.push(ex.textContent) : "";
   }
   const startingValue = startingValueEl.textContent;
   const targetValue = Number(targetValueEl.textContent);

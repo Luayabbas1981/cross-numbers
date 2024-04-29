@@ -171,7 +171,7 @@ export function generatePath() {
     }
     // Add path class and delay var for path array elements
     pathArray.forEach((cell, index) => {
-      cell.classList.add("path");
+      cell.classList.add("path","model__check");
       cell.style.setProperty("--delay", index);
     });
   }
