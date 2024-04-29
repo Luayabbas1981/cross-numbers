@@ -74,21 +74,21 @@ header {
 .current-value {
     scale: 0.8;
 }
-.down-left,
-.up-left {
+.current-value.down-left,
+.current-value.up-left {
     right: 4%;
     bottom: 4%;
 }
-.down-right {
+.current-value.down-right {
     right: 4%;
     top: 4%;
 }
-.up-right {
+.current-value.up-right {
     left: 4%;
     bottom: 4%;
 }
 
-.target-value-container {
+.current-value.target-value-container {
     border-color: green;
     border-radius: 0%;
 }
