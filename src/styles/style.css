@@ -78,6 +78,10 @@ header {
         scale: 1;
     }
 }
+
+.model__check{
+    color: #fff;
+}
 /* Set current position */
 .current-value {
     scale: 0.8;
