@@ -15,7 +15,7 @@ grid.newDirectionOrder;
 grid.coords;
 grid.rows;
 grid.columns;
-const expressionsArray = [];
+
 // Generate game grid and expressions path
 grid.generateGameGrid();
 grid.generatePath();
@@ -52,9 +52,9 @@ function startGame() {
       numExpression = 1;
       startingValueEl.classList.add("show-starting-target-value");
       targetValueContainerEl.classList.add("show-starting-target-value");
-      grid.pathArray.forEach((cell)=>{
-        cell.classList.add("create-path")
-      })
+      grid.pathArray.forEach((cell) => {
+        cell.classList.add("create-path");
+      });
     } else {
       min = gameLevel;
       max = gameLevel * 5 - 1;
@@ -93,8 +93,8 @@ function startGame() {
       expDiv.setAttribute("draggable", true);
       expDiv.textContent = `${expressionArray[i]}`;
       expressionsZone.appendChild(expDiv);
-      expressionArray.push(expDiv);
     }
+    
     dragDropExpression();
   } catch (error) {
     resultEl.textContent = "Error: " + error.message;
@@ -138,6 +138,7 @@ function checkPlayGame() {
   for (const ex of checkZone) {
     ex.innerHTML ? expressions.push(ex.textContent) : "";
   }
+
   const startingValue = startingValueEl.textContent;
   const targetValue = Number(targetValueEl.textContent);
   const checkObject = isTargetValueReached(

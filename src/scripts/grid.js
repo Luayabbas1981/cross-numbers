@@ -1,10 +1,10 @@
 // Game values
 export const cellsArray = [];
 export const pathArray = [];
-export const newDirectionOrder = [];
 export const coords = 9; // always odd number
 export const rows = coords;
 export const columns = coords;
+const newDirectionOrder = [];
 
 export function generateGameGrid() {
   const gameField = document.querySelector(".game-field");
@@ -171,7 +171,7 @@ export function generatePath() {
     }
     // Add path class and delay var for path array elements
     pathArray.forEach((cell, index) => {
-      cell.classList.add("path","model__check");
+      cell.classList.add("path", "model__check");
       cell.style.setProperty("--delay", index);
     });
   }
