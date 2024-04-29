@@ -22,6 +22,9 @@ grid.generatePath();
 // Declaration
 const startingValueEl = document.querySelector(".starting-value");
 const currentValueEl = document.querySelector(".current-value");
+const targetValueContainerEl = document.querySelector(
+  ".target-value-container"
+);
 const targetValueEl = document.querySelector(".target-value");
 const gameLevelInput = document.getElementById("game-level");
 const newGameButton = document.querySelector("#newGameBtn");
@@ -48,6 +51,8 @@ function startGame() {
       maxValue = max;
       operatorString = "+";
       numExpression = 1;
+      startingValueEl.classList.add("show-starting-target-value");
+      targetValueContainerEl.classList.add("show-starting-target-value");
     } else {
       min = gameLevel;
       max = gameLevel * 5 - 1;

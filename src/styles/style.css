@@ -68,8 +68,16 @@ header {
     border: 1px solid;
     color: #fff;
     border-color: #fff;
+    scale: 0;
 }
-
+.show-starting-target-value {
+    animation: show-values 1s ease-in-out forwards;
+}
+@keyframes show-values {
+    to {
+        scale: 1;
+    }
+}
 /* Set current position */
 .current-value {
     scale: 0.8;
@@ -86,11 +94,6 @@ header {
 .current-value.up-right {
     left: 4%;
     bottom: 4%;
-}
-
-.current-value.target-value-container {
-    border-color: green;
-    border-radius: 0%;
 }
 
 #newGameBtn {
