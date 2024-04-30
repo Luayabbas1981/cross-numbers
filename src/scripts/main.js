@@ -15,7 +15,6 @@ grid.newDirectionOrder;
 grid.coords;
 grid.rows;
 grid.columns;
-console.log(grid.pathArray);
 // Generate game grid and expressions path
 grid.generateGameGrid();
 

@@ -24,7 +24,6 @@ export function generateGameGrid() {
 }
 
 export function generatePath() {
-  console.log("hi");
   let startValue = null;
   let targetValue = null;
   let randomDirectionIndex = null;
@@ -79,7 +78,6 @@ export function generatePath() {
   }
 
   loopArrayFromStart();
-  console.log(newDirectionOrder);
   // Calculate path position
   function calculatePosition(startPosition) {
     const offset = (coords - 5) / 2;
