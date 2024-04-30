@@ -102,9 +102,11 @@ header {
 
 }
 .model__check{
+    border: none;
     background: none;
-    border: 2px solid #fff;
     border-radius: 50%;
+    outline: 2px solid #00e6ff;
+    outline-offset: -7px;
     color: var(--white);
 }
 /* Set current position */
