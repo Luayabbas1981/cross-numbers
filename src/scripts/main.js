@@ -15,17 +15,10 @@ grid.newDirectionOrder;
 grid.coords;
 grid.rows;
 grid.columns;
-
+console.log(grid.pathArray);
 // Generate game grid and expressions path
 grid.generateGameGrid();
-grid.generatePath();
-// Declaration
-const startingValueEl = document.querySelector(".starting-value");
-const currentValueEl = document.querySelector(".current-value");
-const targetValueContainerEl = document.querySelector(
-  ".target-value-container"
-);
-const targetValueEl = document.querySelector(".target-value");
+
 const gameLevelInput = document.getElementById("game-level");
 const newGameButton = document.querySelector("#newGameBtn");
 const expressionsZone = document.querySelector(".model__expressions");
@@ -38,6 +31,14 @@ newGameButton.addEventListener("click", startGame);
 
 // Main function of the game
 function startGame() {
+  grid.generatePath();
+  // Declaration
+  const startingValueEl = document.querySelector(".starting-value");
+  const currentValueEl = document.querySelector(".current-value");
+  const targetValueContainerEl = document.querySelector(
+    ".target-value-container"
+  );
+  const targetValueEl = document.querySelector(".target-value");
   try {
     let gameLevel = parseInt(gameLevelInput.value);
     // console.log(gameLevel);
@@ -66,8 +67,11 @@ function startGame() {
 
     grid.pathArray.forEach((block) => {
       block.innerHTML = "";
-      block.classList.add("create-path");
+      block.classList.remove("create-path");
       block.classList.remove("model__check");
+      setTimeout(() => {
+        block.classList.add("create-path");
+      }, 20);
     });
     resultEl.innerHTML = "";
 

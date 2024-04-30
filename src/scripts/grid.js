@@ -1,10 +1,9 @@
 // Game values
-export const cellsArray = [];
-export const pathArray = [];
 export const coords = 9; // always odd number
 export const rows = coords;
 export const columns = coords;
-const newDirectionOrder = [];
+export const cellsArray = [];
+export let pathArray = [];
 
 export function generateGameGrid() {
   const gameField = document.querySelector(".game-field");
@@ -25,12 +24,19 @@ export function generateGameGrid() {
 }
 
 export function generatePath() {
+  console.log("hi");
   let startValue = null;
   let targetValue = null;
   let randomDirectionIndex = null;
   let startCellId = null;
   let nextCell;
+  cellsArray.forEach((cell) => {
+    cell.className = "";
+    cell.classList.add("cell");
+  });
+  pathArray = [];
 
+  let newDirectionOrder = [];
   const directions = [
     {
       id: "up-left",
@@ -62,9 +68,9 @@ export function generatePath() {
       img: "../../images/neon-arrow-left.png",
     },
   ];
-  randomDirectionIndex = Math.floor(Math.random() * directions.length);
 
   function loopArrayFromStart() {
+    randomDirectionIndex = Math.floor(Math.random() * directions.length);
     let index = randomDirectionIndex;
     do {
       index = (index + 1) % directions.length;
@@ -73,7 +79,7 @@ export function generatePath() {
   }
 
   loopArrayFromStart();
-
+  console.log(newDirectionOrder);
   // Calculate path position
   function calculatePosition(startPosition) {
     const offset = (coords - 5) / 2;
