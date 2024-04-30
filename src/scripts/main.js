@@ -104,7 +104,7 @@ function startGame() {
       let randomPosition = null;
       for (let i = 0; i < expressionArray.length; i++) {
         do {
-          randomPosition = getRandomIntInclusive(0, grid.pathArray.length - 1);
+          randomPosition = getRandomIntInclusive(0, grid.pathArray.length - 2);
         } while (previousExpressions.has(randomPosition));
         previousExpressions.add(randomPosition);
         grid.pathArray.forEach((block, index) => {
