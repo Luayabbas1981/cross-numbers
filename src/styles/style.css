@@ -2,6 +2,9 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    /* Colors schema */
+
+--white: #fff;
 }
 
 body {
@@ -30,7 +33,7 @@ header {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    color: #fff;
+    color:var(--white);
 }
 
 .game-field .row {
@@ -68,8 +71,8 @@ header {
     justify-content: center;
     align-items: center;
     border: 1px solid;
-    color: #fff;
-    border-color: #fff;
+    color:var(--white);
+    border-color:var(--white);
     scale: 0;
 }
 .show-starting-target-value {
@@ -100,8 +103,9 @@ header {
 }
 .model__check{
     background: none;
-    color: #fff;
-    background-color: red;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    color: var(--white);
 }
 /* Set current position */
 .current-value {

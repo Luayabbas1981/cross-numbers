@@ -15,6 +15,7 @@ grid.newDirectionOrder;
 grid.coords;
 grid.rows;
 grid.columns;
+let checkZone = [];
 // Generate game grid and expressions path
 grid.generateGameGrid();
 
@@ -22,6 +23,10 @@ const gameLevelInput = document.getElementById("game-level");
 const newGameButton = document.querySelector("#newGameBtn");
 const expressionsZone = document.querySelector(".model__expressions");
 const resultEl = document.querySelector(".model__result");
+let startingValueEl = null;
+let currentValueEl = null;
+let targetValueContainerEl = null;
+let targetValueEl = null;
 // event listeners
 newGameButton.addEventListener("click", startGame);
 
@@ -32,12 +37,10 @@ newGameButton.addEventListener("click", startGame);
 function startGame() {
   grid.generatePath();
   // Declaration
-  const startingValueEl = document.querySelector(".starting-value");
-  const currentValueEl = document.querySelector(".current-value");
-  const targetValueContainerEl = document.querySelector(
-    ".target-value-container"
-  );
-  const targetValueEl = document.querySelector(".target-value");
+  startingValueEl = document.querySelector(".starting-value");
+  currentValueEl = document.querySelector(".current-value");
+  targetValueContainerEl = document.querySelector(".target-value-container");
+  targetValueEl = document.querySelector(".target-value");
   try {
     let gameLevel = parseInt(gameLevelInput.value);
     // console.log(gameLevel);
@@ -104,7 +107,7 @@ function startGame() {
       let randomPosition = null;
       for (let i = 0; i < expressionArray.length; i++) {
         do {
-          randomPosition = getRandomIntInclusive(0, grid.pathArray.length - 2);
+          randomPosition = getRandomIntInclusive(1, grid.pathArray.length - 2);
         } while (previousExpressions.has(randomPosition));
         previousExpressions.add(randomPosition);
         grid.pathArray.forEach((block, index) => {
@@ -115,13 +118,13 @@ function startGame() {
       }
     }
     distributeExpressions();
-    dragDropExpression();
   } catch (error) {
     resultEl.textContent = "Error: " + error.message;
   }
+  checkZone = document.querySelectorAll(".model__check ");
+  dragDropExpression();
 }
 
-const checkZone = document.querySelectorAll(".model__check ");
 function dragDropExpression() {
   const draggableExpressionEls = document.getElementsByClassName("expression");
   for (const draggableExpEl of draggableExpressionEls) {

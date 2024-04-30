@@ -127,11 +127,8 @@ export function generatePath() {
       let nextDirection = newDirectionOrder[i];
       for (let x = 0; x < directions.length; x++) {
         nextCell = cellsArray.find((cell) => {
-          if (i === 2 && x > 2) {
+          if (i === 2 && x > 1) {
             return;
-          } else if (i === 2 && x > 1) {
-            i = 3;
-            x = 3;
           } else {
             return (
               cell.id ===
