@@ -29,13 +29,13 @@ export function generatePath() {
   let randomDirectionIndex = null;
   let startCellId = null;
   let nextCell;
+  let newDirectionOrder = [];
+  pathArray = [];
   cellsArray.forEach((cell) => {
     cell.className = "";
     cell.classList.add("cell");
   });
-  pathArray = [];
 
-  let newDirectionOrder = [];
   const directions = [
     {
       id: "up-left",
