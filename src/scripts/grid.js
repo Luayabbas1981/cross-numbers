@@ -151,8 +151,6 @@ export function generatePath() {
     pathArray.forEach((cell, index) => {
       cell.classList.add("path");
       cell.style.setProperty("--delay", index);
-      if (cell.classList.contains("up")) {
-      }
     });
   }
   startPath();
