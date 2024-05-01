@@ -67,8 +67,8 @@ export function generatePath() {
       img: "../../images/neon-arrow-left.png",
     },
   ];
-  
-// Wrap directions array form the first randomly direction
+
+  // Wrap directions array form the first randomly direction
   function loopArrayFromStart() {
     randomDirectionIndex = Math.floor(Math.random() * directions.length);
     let index = randomDirectionIndex;
@@ -155,23 +155,18 @@ export function generatePath() {
       let centerCellId = targetValue.id.split("-");
       let deltaX = 0;
       let deltaY = 0;
-      let cellClass = null;
       switch (direction) {
         case "down-right":
           deltaX = -1;
-          cellClass = "down-right";
           break;
         case "down-left":
           deltaY = 1;
-          cellClass = "down-left";
           break;
         case "up-right":
           deltaY = -1;
-          cellClass = "up-right";
           break;
         case "up-left":
           deltaX = 1;
-          cellClass = "up-left";
           break;
       }
 
@@ -181,7 +176,7 @@ export function generatePath() {
           `${+centerCellId[0] + deltaX}-${+centerCellId[1] + deltaY}`
       );
 
-      lastCell.classList.add(cellClass, "path");
+      lastCell.classList.add(direction, "path");
       pathArray.push(lastCell);
     }
     lastCellHandler(lastDirection);
