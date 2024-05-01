@@ -145,9 +145,9 @@ function dragDropExpression() {
     check.addEventListener("drop", (e) => {
       e.preventDefault();
       const expId = e.dataTransfer.getData("expId");
+      const draggableExpression = document.getElementById(expId);
       // console.log(expId);
       if (e.target.classList.contains("model__check")) {
-        const draggableExpression = document.getElementById(expId);
         e.target.appendChild(draggableExpression);
       }
     });
@@ -177,12 +177,12 @@ function checkPlayGame() {
   currentValueEl.textContent = !Number.isInteger(currentValue)
     ? currentValue.toFixed(2)
     : currentValue;
-  if (targetReached && expressionsZone.children.length === 0) {
+  if (!targetReached) {
+    currentValueEl.style = "color:red";
+  } else if (targetReached && expressionsZone.children.length !== 0) {
+    resultEl.innerHTML = "to win you should use all operations in the box";
+  } else if (targetReached && expressionsZone.children.length === 0) {
     resultEl.innerHTML = "GREAT! 🤩";
-  } else if (!targetReached && expressionsZone.children.length === 0) {
-    currentValueEl.classList.add("shake-horizontal");
-    setTimeout(() => {
-      currentValueEl.classList.remove("shake-horizontal");
-    }, 800);
+    currentValueEl.style = "color:greenyellow";
   }
 }

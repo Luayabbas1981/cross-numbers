@@ -75,6 +75,9 @@ header {
     border-color:var(--white);
     scale: 0;
 }
+.target-value{
+    color: greenyellow;
+}
 .show-starting-target-value {
     animation: show-values .3s ease-in-out forwards;
 }
@@ -137,3 +140,13 @@ header {
 #newGameBtn {
     background-color: yellow;
 }
+/* Wrong ex place animate
+
+.wrong-ex-place{
+    animation: alarm 1s 2 ease-in-out alternate;
+}
+@keyframes alarm {
+    to{
+        outline-color: yellow;
+    }
+} */
