@@ -178,7 +178,7 @@ function checkPlayGame() {
     ? currentValue.toFixed(2)
     : currentValue;
   if (!targetReached) {
-    currentValueEl.style = "color:red";
+    currentValueEl.style = "color:#ff7f00";
   } else if (targetReached && expressionsZone.children.length !== 0) {
     resultEl.innerHTML = "to win you should use all operations in the box";
   } else if (targetReached && expressionsZone.children.length === 0) {
