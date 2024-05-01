@@ -120,7 +120,7 @@ export function generatePath() {
   );
 
   // Start path fun
-
+  let lastDirection = null;
   startCellId = startValue.id.split("-");
   function startPath() {
     for (let i = 0; i < 3; i++) {
@@ -128,6 +128,7 @@ export function generatePath() {
       for (let x = 0; x < directions.length; x++) {
         nextCell = cellsArray.find((cell) => {
           if (i === 2 && x > 1) {
+            lastDirection = newDirectionOrder[x + 1].id;
             return;
           } else {
             return (
@@ -147,6 +148,42 @@ export function generatePath() {
         }
       }
     }
+
+    function lastCellHandler(direction) {
+      let centerCellId = targetValue.id.split("-");
+      let deltaX = 0;
+      let deltaY = 0;
+      let cellClass = null;
+      console.log(direction);
+      switch (direction) {
+        case "down-right":
+          deltaX = -1;
+          cellClass = "down-right";
+          break;
+        case "down-left":
+          deltaY = 1;
+          cellClass = "down-left";
+          break;
+        case "up-right":
+          deltaY = -1;
+          cellClass = "up-right";
+          break;
+        case "up-left":
+          deltaX = 1;
+          cellClass = "up-left";
+          break;
+      }
+
+      let lastCell = cellsArray.find(
+        (cell) =>
+          cell.id ===
+          `${+centerCellId[0] + deltaX}-${+centerCellId[1] + deltaY}`
+      );
+
+      lastCell.classList.add(cellClass, "path");
+      pathArray.push(lastCell);
+    }
+    lastCellHandler(lastDirection);
     // Add path class and delay var for path array elements
     pathArray.forEach((cell, index) => {
       cell.classList.add("path");
