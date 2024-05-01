@@ -10,7 +10,7 @@
 body {
     padding: 2rem;
     background: radial-gradient(ellipse at 94% 49%, #363f57 0, rgba(50, 59, 82, 0) 64%),
-        radial-gradient(ellipse at 38% 89%, #323a50 14%, #151515 74%);
+        radial-gradient(ellipse at 38% 89%, #323a50 14%, #151515 74%)no-repeat;
     height: 100dvh;
 }
 header {
@@ -26,7 +26,6 @@ header {
 }
 
 .model__expressions,
-.model__controller,
 .model__result {
     width: 50%;
     height: 7%;
