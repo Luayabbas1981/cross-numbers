@@ -154,7 +154,6 @@ export function generatePath() {
       let deltaX = 0;
       let deltaY = 0;
       let cellClass = null;
-      console.log(direction);
       switch (direction) {
         case "down-right":
           deltaX = -1;
@@ -192,29 +191,3 @@ export function generatePath() {
   }
   startPath();
 }
-
-/*  if (nextDirection.id === "up-left") {
-              if (cell.id === `${+startCellId[0]}-${+startCellId[1] + 1}`) {
-                cell.classList.add("right");
-                return true;
-              }
-              return false;
-            } else if (nextDirection.id === "up-right") {
-              if (cell.id === `${+startCellId[0] + 1}-${+startCellId[1]}`) {
-                cell.classList.add("down");
-                return true;
-              }
-              return false;
-            } else if (nextDirection.id === "down-right") {
-              if (cell.id === `${+startCellId[0]}-${+startCellId[1] - 1}`) {
-                cell.classList.add("left");
-                return true;
-              }
-              return false;
-            } else if (nextDirection.id === "down-left") {
-              if (cell.id === `${+startCellId[0] - 1}-${+startCellId[1]}`) {
-                cell.classList.add("up");
-                return true;
-              }
-              return false;
-            } */
