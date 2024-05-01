@@ -31,22 +31,16 @@
       <div class="game-field"></div>
      
       <div class="model__expressions bg-danger"></div>
-      <div class="model__controller d-flex align-items-center text-light mt-2">
-        <div class="me-5">
-          <label for="game-level"
-          >Game Level
-          <input
-            type="number"
-            id="game-level"
-            min="0"
-            max="6"
-            step="1"
-            value="0"
-          />
-        </label>
-        </div>
-      
+      <div class="model__controller d-flex align-items-center text-light mt-2">  
+        <div class="me-5 d-flex justify-content-center align-items-center gap-4">
+          <div class="text-light">Game level</div>
+          <div class="level">0</div>
+          <div class="arrows-con d-flex flex-column gap-2">
+            <img src="../images/green-triangle.png" alt=""><img src="../images/red-triangle.png" alt="">
+          </div>
+          
 
+        </div>
         <button id="newGameBtn" class="btn">New Game</button>
       </div>
 

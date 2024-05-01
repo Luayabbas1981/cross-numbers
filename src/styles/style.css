@@ -144,13 +144,7 @@ header {
 #newGameBtn {
     background-color: yellow;
 }
-/* Wrong ex place animate
-
-.wrong-ex-place{
-    animation: alarm 1s 2 ease-in-out alternate;
+.arrows-con img{
+    width: 1.5rem;
+    cursor: pointer;
 }
-@keyframes alarm {
-    to{
-        outline-color: yellow;
-    }
-} */
