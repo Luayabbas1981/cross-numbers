@@ -67,7 +67,8 @@ export function generatePath() {
       img: "../../images/neon-arrow-left.png",
     },
   ];
-
+  
+// Wrap directions array form the first randomly direction
   function loopArrayFromStart() {
     randomDirectionIndex = Math.floor(Math.random() * directions.length);
     let index = randomDirectionIndex;
@@ -78,7 +79,8 @@ export function generatePath() {
   }
 
   loopArrayFromStart();
-  // Calculate path position
+
+  // Calculate start cell position in grid
   function calculatePosition(startPosition) {
     const offset = (coords - 5) / 2;
     let initX = offset;
