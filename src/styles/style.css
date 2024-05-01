@@ -75,16 +75,22 @@ header {
 .starting-value,
 .target-value-container {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border: 1px solid;
     color:var(--white);
     border-color:var(--white);
     scale: 0;
     font-size: 1.3rem;
 }
+.starting-value{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .target-value{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
     color: greenyellow;
 }
 .show-starting-target-value {
@@ -125,6 +131,7 @@ header {
 .current-value {
     scale: 0.8;
     background: none;
+    transition: 1.7s;
 }
 .current-value.down-left,
 .current-value.up-left {
@@ -138,6 +145,12 @@ header {
 .current-value.up-right {
     left: 4%;
     bottom: 4%;
+}
+.target-reached{
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    color: greenyellow;
 }
 
 .path:not(.model__check){

@@ -200,6 +200,7 @@ function checkPlayGame() {
     resultEl.innerHTML = "to win you should use all operations in the box";
   } else if (targetReached && expressionsZone.children.length === 0) {
     resultEl.innerHTML = "GREAT! 🤩";
-    currentValueEl.style = "color:greenyellow";
+    currentValueEl.classList.remove("up-left","down-left","up-right","down-right")
+    currentValueEl.classList.add("target-reached")
   }
 }
