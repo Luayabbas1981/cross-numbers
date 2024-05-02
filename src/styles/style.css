@@ -1,168 +1,168 @@
-@font-face{
-    font-family: "play";
-    src: url(../../fonts/Play-Bold.ttf);
+@font-face {
+  font-family: "play";
+  src: url(../../fonts/Play-Bold.ttf);
 }
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    /* Colors schema */
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* Colors schema */
 
---white: #fff;
-font-family: "play";
+  --white: #fff;
+  font-family: "play";
 }
 
 body {
-    padding: 2rem;
-    background: radial-gradient(ellipse at 94% 49%, #363f57 0, rgba(50, 59, 82, 0) 64%),
-        radial-gradient(ellipse at 38% 89%, #323a50 14%, #151515 74%)no-repeat;
-    height: 100dvh;
+  padding: 2rem;
+  background: radial-gradient(
+      ellipse at 94% 49%,
+      #363f57 0,
+      rgba(50, 59, 82, 0) 64%
+    ),
+    radial-gradient(ellipse at 38% 89%, #323a50 14%, #151515 74%) no-repeat;
+  height: 100dvh;
 }
 header {
-    height: 2vh;
+  height: 2vh;
 }
 .game-wrapper {
-    height: 93vh;
+  height: 93vh;
 }
 .game-field {
-    height: 80%;
-    aspect-ratio: 1;
-    padding: 1rem;
+  height: 80%;
+  aspect-ratio: 1;
+  padding: 1rem;
 }
 
 .model__expressions,
 .model__result {
-    width: 50%;
-    height: 7%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    color:var(--white);
+  width: 50%;
+  height: 7%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: var(--white);
 }
-.model__expressions{
-    font-size: 1.5rem;
-    cursor: pointer;
-    background-color: #0293b0;
+.model__expressions {
+  font-size: 1.5rem;
+  cursor: pointer;
+  background-color: #0293b0;
 }
 .game-field .row {
-    height: calc(100% / var(--rows));
+  height: calc(100% / var(--rows));
 }
 .game-field .cell {
-    height: 100%;
-    width: calc(100% / var(--columns));
+  height: 100%;
+  width: calc(100% / var(--columns));
 }
 .path {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #00e6ff;
-    background-color: #008c9e;
-    opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #00e6ff;
+  background-color: #008c9e;
+  opacity: 0;
 }
-.create-path{
-    animation: create-path  1s ease-in-out forwards;
-    animation-delay: calc(0.2s * var(--delay));
+.create-path {
+  animation: create-path 1s ease-in-out forwards;
+  animation-delay: calc(0.2s * var(--delay));
 }
 @keyframes create-path {
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
 .path img {
-    width: 90%;
-    height: 90%;
+  width: 90%;
+  height: 90%;
 }
 .starting-value,
 .target-value-container {
-    position: relative;
-    border: 1px solid;
-    color:var(--white);
-    border-color:var(--white);
-    scale: 0;
-    font-size: 1.3rem;
+  position: relative;
+  border: 1px solid;
+  color: var(--white);
+  border-color: var(--white);
+  scale: 0;
+  font-size: 1.3rem;
 }
-.starting-value{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.starting-value {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.target-value{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    color: greenyellow;
+.target-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  color: greenyellow;
 }
 .show-starting-target-value {
-    animation: show-values .3s ease-in-out forwards;
+  animation: show-values 0.3s ease-in-out forwards;
 }
 @keyframes show-values {
-    to {
-        scale: 1;
-    }
+  to {
+    scale: 1;
+  }
 }
-
 
 /* Set images */
-.up-left{  
-    background: url(../../images/neon-arrow-up.png)no-repeat center;
+.up-left {
+  background: url(../../images/neon-arrow-up.png) no-repeat center;
 }
-.up-right{
-    background: url(../../images/neon-arrow-right.png)no-repeat center;
-    
+.up-right {
+  background: url(../../images/neon-arrow-right.png) no-repeat center;
 }
-.down-right{
-    background: url(../../images/neon-arrow-down.png)no-repeat center;
-    
+.down-right {
+  background: url(../../images/neon-arrow-down.png) no-repeat center;
 }
-.down-left{
-    background: url(../../images/neon-arrow-left.png)no-repeat center;
-
+.down-left {
+  background: url(../../images/neon-arrow-left.png) no-repeat center;
 }
-.model__check{
-    border: none;
-    background: none;
-    border-radius: 50%;
-    outline: 2px solid #00e6ff;
-    outline-offset: -7px;
-    color: var(--white);
+.model__check {
+  border: none;
+  background: none;
+  border-radius: 50%;
+  outline: 2px solid #00e6ff;
+  outline-offset: -7px;
+  color: var(--white);
 }
 /* Set current position */
 .current-value {
-    scale: 0.8;
-    background: none;
-    transition: 1.7s;
+  scale: 0.8;
+  background: none;
+  transition: 1.7s;
 }
 .current-value.down-left,
 .current-value.up-left {
-    right: 4%;
-    bottom: 4%;
+  right: 4%;
+  bottom: 4%;
 }
 .current-value.down-right {
-    right: 4%;
-    top: 4%;
+  right: 4%;
+  top: 4%;
 }
 .current-value.up-right {
-    left: 4%;
-    bottom: 4%;
+  left: 4%;
+  bottom: 4%;
 }
-.target-reached{
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    color: greenyellow !important;
+.target-reached {
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  color: greenyellow !important;
 }
 
-.path:not(.model__check){
-    border: none;
-    background-color: transparent;
-    background-size: 80% 80%;
+.path:not(.model__check) {
+  border: none;
+  background-color: transparent;
+  background-size: 80% 80%;
 }
 
 #newGameBtn {
-    background-color: yellow;
+  background-color: yellow;
 }
-.arrows-con img{
-    width: 1.5rem;
-    cursor: pointer;
+.arrows-con img {
+  width: 1.5rem;
+  cursor: pointer;
 }
