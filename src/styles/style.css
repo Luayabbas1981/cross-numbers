@@ -136,15 +136,15 @@ header {
 .current-value.down-left,
 .current-value.up-left {
   right: 4%;
-  bottom: 4%;
+  bottom: 1%;
 }
 .current-value.down-right {
   right: 4%;
-  top: 4%;
+  top: -5%;
 }
 .current-value.up-right {
   left: 4%;
-  bottom: 4%;
+  bottom: 1%;
 }
 .target-reached {
   top: 50%;
