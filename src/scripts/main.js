@@ -54,6 +54,7 @@ levelDown.addEventListener("click", function () {
 function startGame() {
   grid.generatePath();
   droppedExpressionsOrder = null;
+  checkZone = [];
   // Declaration
   startingValueEl = document.querySelector(".starting-value");
   currentValueEl = document.querySelector(".current-value");
