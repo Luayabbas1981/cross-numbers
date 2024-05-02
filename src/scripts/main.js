@@ -116,7 +116,6 @@ function startGame() {
       expressionsZone.appendChild(expDiv);
     }
     // Generate check zone
-    console.log(expressionArray);
 
     const previousExpressions = new Set();
     previousExpressions.clear();
