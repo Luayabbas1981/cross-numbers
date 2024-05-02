@@ -22,7 +22,6 @@ grid.generateGameGrid();
 const gameLevelCon = document.querySelector(".level");
 const levelUp = document.querySelector(".arrows-con img:first-child");
 const levelDown = document.querySelector(".arrows-con img:last-child");
-console.log(levelUp, levelDown);
 const newGameButton = document.querySelector("#newGameBtn");
 const expressionsZone = document.querySelector(".model__expressions");
 const resultEl = document.querySelector(".model__result");
@@ -117,6 +116,7 @@ function startGame() {
       expressionsZone.appendChild(expDiv);
     }
     // Generate check zone
+    console.log(expressionArray);
 
     const previousExpressions = new Set();
     previousExpressions.clear();
@@ -189,6 +189,7 @@ function checkPlayGame() {
     targetValue,
     expressions
   );
+
   // console.log(checkObject);
   const { currentValue, targetReached } = checkObject;
   currentValueEl.textContent = !Number.isInteger(currentValue)
