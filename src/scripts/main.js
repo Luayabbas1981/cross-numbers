@@ -16,6 +16,7 @@ grid.coords;
 grid.rows;
 grid.columns;
 let checkZone = [];
+let originalCheckZone = null;
 // Generate game grid and expressions path
 grid.generateGameGrid();
 
@@ -105,6 +106,7 @@ function startGame() {
     startingValueEl.textContent = startingValue;
     targetValueEl.textContent = targetValue;
 
+    originalCheckZone = new Array(expressionArray.length);
     expressionsZone.innerHTML = "";
 
     for (let i = 0; i < numExpression; i++) {
@@ -122,6 +124,7 @@ function startGame() {
     function distributeExpressions() {
       let randomPosition = null;
       for (let i = 0; i < expressionArray.length; i++) {
+        let blockIndex = 0;
         do {
           randomPosition = getRandomIntInclusive(1, grid.pathArray.length - 2);
         } while (previousExpressions.has(randomPosition));
@@ -129,6 +132,7 @@ function startGame() {
         grid.pathArray.forEach((block, index) => {
           if (previousExpressions.has(index)) {
             block.classList.add("model__check");
+            block.dataset.order = blockIndex++;
           }
         });
       }
@@ -165,6 +169,12 @@ function dragDropExpression() {
       // console.log(expId);
       if (e.target.classList.contains("model__check")) {
         e.target.appendChild(draggableExpression);
+        originalCheckZone.splice(
+          +e.target.dataset.order,
+          1,
+          e.target.children[0].textContent
+        );
+        console.log(originalCheckZone);
       }
     });
   });
