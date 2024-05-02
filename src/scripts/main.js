@@ -53,6 +53,7 @@ levelDown.addEventListener("click", function () {
 // Main function of the game
 function startGame() {
   grid.generatePath();
+  droppedExpressionsOrder = null;
   // Declaration
   startingValueEl = document.querySelector(".starting-value");
   currentValueEl = document.querySelector(".current-value");
