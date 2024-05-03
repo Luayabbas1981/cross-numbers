@@ -32,6 +32,7 @@ export function generatePath() {
   let newDirectionOrder = [];
   pathArray = [];
   cellsArray.forEach((cell) => {
+    cell.innerHTML=""
     cell.className = "";
     cell.classList.add("cell");
   });
