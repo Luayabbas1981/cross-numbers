@@ -7,18 +7,22 @@ export let pathArray = [];
 
 export function generateGameGrid() {
   const gameField = document.querySelector(".game-field");
+  console.log("hi");
+  
   gameField.style.setProperty("--rows", rows);
-  gameField.style.setProperty("--columns", columns);
-  for (let r = 0; r < rows; r++) {
+ 
+  for (let x = 0; x < rows; x++) {
     const row = document.createElement("div");
     row.classList.add("row");
+     row.style.setProperty("--columns", columns);
     gameField.appendChild(row);
-    for (let c = 0; c < columns; c++) {
+    for (let y = 0; y < columns; y++) {
       const column = document.createElement("div");
-      column.id = `${r}-${c}`;
+      column.id = `${x}-${y}`;
       column.classList.add("cell");
       row.appendChild(column);
       cellsArray.push(column);
     }
   }
 }
+generateGameGrid()
