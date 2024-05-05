@@ -45,7 +45,7 @@ body {
   align-items: center;
   width: calc(100% / var(--columns));
 }
-.start-value {
+.starting-value {
   background-color: #009db1;
   border-radius: 50%;
 }

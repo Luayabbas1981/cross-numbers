@@ -18,6 +18,8 @@ const resultEl = document.querySelector(".model__result");
 const gameLevelCon = document.querySelector(".level");
 const levelUp = document.querySelector(".arrows-con img:first-child");
 const levelDown = document.querySelector(".arrows-con img:last-child");
+// Game values
+let gameLevel = 0;
 // event listeners
 newGameButton.addEventListener("click", startGame);
 
