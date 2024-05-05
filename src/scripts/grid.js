@@ -32,7 +32,7 @@ function generateZigzagPath(steps) {
   while (attempt < pathLength) {
     let currentRow = Math.floor(Math.random() * (rows - 2)) + 1;
     let currentCol = Math.floor(Math.random() * (columns - 2)) + 1;
-    let lastDirection = Math.random() < 0.5 ? "horizontal" : "vertical";
+    let lastDirection =  "vertical";
     let changeDirectionAfter = 4;
     let currentDirectionSteps = 0;
 
