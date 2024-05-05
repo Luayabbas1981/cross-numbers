@@ -1,9 +1,9 @@
 // Game values
-const coords = 12; // always odd number
+const coords = 12;
 const rows = coords;
 const columns = coords;
 const cellsArray = [];
-let pathArray = null; 
+let pathArray = null;
 let pathLength = 9;
 
 function generateGameGrid() {
@@ -30,9 +30,9 @@ generateGameGrid();
 function generateZigzagPath(steps) {
   let attempt = 0;
   while (attempt < pathLength) {
-    let currentRow = Math.floor(Math.random() * (rows - 2)) + 1;
+    let currentRow = Math.floor(rows / 2);
     let currentCol = Math.floor(Math.random() * (columns - 2)) + 1;
-    let lastDirection =  "vertical";
+    let lastDirection = "vertical";
     let changeDirectionAfter = 4;
     let currentDirectionSteps = 0;
 
@@ -126,7 +126,6 @@ function generateZigzagPath(steps) {
         //   }
         // });
         console.log(pathArray);
-        
       }
     }
 
