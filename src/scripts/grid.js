@@ -136,6 +136,7 @@ function generateZigzagPath(steps) {
       attempt++;
     }
   }
+  pathPrepration();
 }
 
 generateZigzagPath(pathLength);
@@ -163,6 +164,6 @@ function pathPrepration() {
     }
   });
 }
-pathPrepration();
+
 
 export { cellsArray, pathArray, pathLength };

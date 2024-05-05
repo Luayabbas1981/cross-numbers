@@ -63,8 +63,6 @@ function startGame() {
           : getRandomIntInclusive(gameLevel - 1, gameLevel);
     }
     // console.log({ min, max, startingValue, maxValue, numExpression });
-
-    checkZone.innerHTML = "";
     resultEl.innerHTML = "";
 
     const expressions = generateExpressionArray(
