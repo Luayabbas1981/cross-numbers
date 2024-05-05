@@ -139,3 +139,20 @@ function generateZigzagPath(steps) {
 }
 
 generateZigzagPath(pathLength);
+
+
+function pathPrepration(){
+  pathArray.forEach((cell,index,arr)=>{
+     if (index === 0) {
+      cell.classList.add("start-value")
+     }
+    if(index %2 === 0){
+      cell.classList.remove("up", "down", "left", "right");
+    }
+    if(index === arr.length -1){
+      cell.classList.add("target-value")
+    }
+   
+  })
+}
+pathPrepration()
