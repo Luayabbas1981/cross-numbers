@@ -3,7 +3,6 @@ const coords = 12;
 const rows = coords;
 const columns = coords;
 const cellsArray = [];
-const pathLength = 13; // always odd number up 5
 let pathArray = [];
 
 function generateGameGrid() {
@@ -29,7 +28,7 @@ generateGameGrid();
 // create zigzag path
 function generateZigzagPath(steps) {
   let attempt = 0;
-  while (attempt < pathLength) {
+  while (attempt < steps) {
     let currentRow = Math.floor(rows / 3);
     let currentCol = Math.floor(Math.random() * (columns - 2)) + 1;
     let lastDirection = "vertical";
@@ -115,7 +114,7 @@ function generateZigzagPath(steps) {
         currentDirectionSteps++;
       }
       // Create path array after path generate success
-      if (visitedCells.size === pathLength) {
+      if (visitedCells.size === steps) {
         visitedCells.forEach((id) => {
           const cellElement = document.getElementById(id);
           if (cellElement) {
@@ -139,7 +138,7 @@ function generateZigzagPath(steps) {
   pathPrepration();
 }
 
-generateZigzagPath(pathLength);
+
 
 function pathPrepration() {
   pathArray.forEach((cell, index, arr) => {
@@ -166,4 +165,4 @@ function pathPrepration() {
 }
 
 
-export { cellsArray, pathArray, pathLength };
+export {generateZigzagPath, cellsArray, pathArray};

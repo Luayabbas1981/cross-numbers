@@ -7,6 +7,10 @@ import {
   generateExpressionArray,
 } from "./helper.js";
 import * as grid from "./grid.js";
+// Game values
+const pathLength = 13; // always odd number up 5
+let gameLevel = 0;
+grid.generateZigzagPath(pathLength);
 // Declaration
 const startingValueEl = document.querySelector(".starting-value");
 const currentValueEl = document.querySelector(".current-value");
@@ -18,8 +22,7 @@ const resultEl = document.querySelector(".model__result");
 const gameLevelCon = document.querySelector(".level");
 const levelUp = document.querySelector(".arrows-con img:first-child");
 const levelDown = document.querySelector(".arrows-con img:last-child");
-// Game values
-let gameLevel = 0;
+
 // event listeners
 newGameButton.addEventListener("click", startGame);
 
