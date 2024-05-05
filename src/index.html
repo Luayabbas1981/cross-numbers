@@ -22,32 +22,21 @@
     <title>Test Page</title>
   </head>
   <body>
-    <div class="game-wrapper p-4 d-flex flex-column justify-content-start align-items-center gap-2">
+    <div
+      class="game-wrapper p-4 d-flex flex-column justify-content-start align-items-center gap-2"
+    >
       <h1>MOP</h1>
       <div class="game-field"></div>
-        <div class="model__expressions"></div>
+      <div class="model__expressions"></div>
       <div class="model__result"></div>
+      <div class="game-controller d-flex justify-content-around align-items-center">
+        <div class="level-container d-flex justify-content-around">
+          
+        </div>
         <button id="newGameBtn" class="btn btn-warning">New Game</button>
-    </div>
-    <div class="model d-none">
-      <div class="model__items">
-        <div class="model__item starting-value">StartingValue</div>
-        <div class="model__item current-value">CurrentValue</div>
-        <div class="model__item target-value">TargetValue</div>
-      </div>
-      <div class="model__controller">
-        <label for="game-level">Game Level</label>
-        <input
-          type="number"
-          id="game-level"
-          min="0"
-          max="10"
-          step="1"
-          value="0"
-        />
-      
       </div>
     </div>
+
     <!-- JavaScript -->
     <!-- <script type="module" src="./test.js"></script> -->
     <script type="module" src="scripts/grid.js"></script>
