@@ -21,7 +21,7 @@ body {
 .game-wrapper {
   margin-top: 2rem;
   height: 100vh;
- color: #fff;
+  color: #fff;
 }
 .game-field {
   height: 70%;
@@ -41,14 +41,12 @@ body {
   width: calc(100% / var(--columns));
 }
 .start-value {
-  background-color: #00bcd4;
+  background-color: #009db1;
   border-radius: 50%;
- 
 }
 .target-value {
-  background-color: #f66315;
+  background-color: #b4c50b;
   border-radius: 50%;
- 
 }
 .visited {
   color: #fff;

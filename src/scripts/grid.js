@@ -164,3 +164,5 @@ function pathPrepration() {
   });
 }
 pathPrepration();
+
+export { cellsArray, pathArray, pathLength };
