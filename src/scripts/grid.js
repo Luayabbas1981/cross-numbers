@@ -3,8 +3,8 @@ const coords = 12;
 const rows = coords;
 const columns = coords;
 const cellsArray = [];
-let pathArray = null;
 let pathLength = 13;
+let pathArray = [];
 
 function generateGameGrid() {
   const gameField = document.querySelector(".game-field");
@@ -114,17 +114,14 @@ function generateZigzagPath(steps) {
         moveCount++;
         currentDirectionSteps++;
       }
-
+      // Create path array after path generate success
       if (visitedCells.size === pathLength) {
-        // To get path cells id
-        pathArray = Array.from(visitedCells);
-        // To get path cells div's
-        // pathArray = [];
-        // cellsArray.forEach((cell) => {
-        //   if (visitedCells.has(cell.id)) {
-        //     pathArray.push(cell);
-        //   }
-        // });
+        visitedCells.forEach((id) => {
+          const cellElement = document.getElementById(id);
+          if (cellElement) {
+            pathArray.push(cellElement);
+          }
+        });
         console.log(pathArray);
       }
     }
