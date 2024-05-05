@@ -3,7 +3,7 @@ const coords = 12;
 const rows = coords;
 const columns = coords;
 const cellsArray = [];
-let pathLength = 13; // always odd number up 5
+const pathLength = 13; // always odd number up 5
 let pathArray = [];
 
 function generateGameGrid() {
