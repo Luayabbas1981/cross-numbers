@@ -15,7 +15,9 @@ const newGameButton = document.querySelector("#newGameBtn");
 const checkZone = document.querySelector(".model__check ");
 const expressionsZone = document.querySelector(".model__expressions");
 const resultEl = document.querySelector(".model__result");
-
+const gameLevelCon = document.querySelector(".level");
+const levelUp = document.querySelector(".arrows-con img:first-child");
+const levelDown = document.querySelector(".arrows-con img:last-child");
 // event listeners
 newGameButton.addEventListener("click", startGame);
 
