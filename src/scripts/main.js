@@ -11,7 +11,6 @@ import * as grid from "./grid.js";
 const startingValueEl = document.querySelector(".starting-value");
 const currentValueEl = document.querySelector(".current-value");
 const targetValueEl = document.querySelector(".target-value");
-const gameLevelInput = document.getElementById("game-level");
 const newGameButton = document.querySelector("#newGameBtn");
 const checkZone = document.querySelector(".model__check ");
 const expressionsZone = document.querySelector(".model__expressions");
@@ -22,11 +21,23 @@ newGameButton.addEventListener("click", startGame);
 
 //Global variables
 //let gameLevel = 0; // game level starts at 0 and ends at 10
+// Level cotroller
+levelUp.addEventListener("click", function () {
+  if (gameLevel < 6) {
+    gameLevel++;
+    gameLevelCon.textContent = gameLevel;
+  }
+});
+levelDown.addEventListener("click", function () {
+  if (gameLevel > 0) {
+    gameLevel--;
+    gameLevelCon.textContent = gameLevel;
+  }
+});
 
 // Main function of the game
 function startGame() {
   try {
-    let gameLevel = parseInt(gameLevelInput.value);
     // console.log(gameLevel);
     let min, max, startingValue, maxValue, operatorString, numExpression;
     if (gameLevel === 0) {
