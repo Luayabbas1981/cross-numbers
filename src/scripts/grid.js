@@ -116,14 +116,9 @@ function generateZigzagPath(steps) {
       }
       // Create path array after path generate success
       if (visitedCells.size === pathLength) {
-        let firstClass = true;
         visitedCells.forEach((id) => {
           const cellElement = document.getElementById(id);
           if (cellElement) {
-            if (firstClass) {
-              cellElement.classList.add("first-cell"); // Start value class
-              firstClass = false;
-            }
             pathArray.push(cellElement);
           }
         });
