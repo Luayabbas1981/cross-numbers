@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 body {
   background: radial-gradient(
       ellipse at 94% 49%,
@@ -26,9 +29,45 @@ body {
 }
 
 .cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: calc(100% / var(--columns));
-  border: 1px solid #fff;
 }
-.visited{
+.start-value {
   background-color: #00bcd4;
+}
+.target-value {
+  background-color: #f66315;
+}
+.visited {
+  border: 1px solid #fffc27;
+  color: #fff;
+  font-weight: bold;
+  opacity: 0;
+  animation: show-path 0.5s ease-in-out forwards;
+  animation-delay: calc(0.3s * var(--delay));
+}
+@keyframes show-path {
+  to {
+    opacity: 1;
+  }
+}
+.up {
+  background: url(../../images/neon-arrow-up.png);
+}
+.down {
+  background: url(../../images/neon-arrow-down.png);
+}
+.right {
+  background: url(../../images/neon-arrow-right.png);
+}
+.left {
+  background: url(../../images/neon-arrow-left.png);
+}
+.arrow {
+  background-size: 55% 55%;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-position: center;
 }

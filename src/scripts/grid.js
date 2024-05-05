@@ -3,7 +3,7 @@ const coords = 12;
 const rows = coords;
 const columns = coords;
 const cellsArray = [];
-let pathLength = 13;
+let pathLength = 13; // always odd number up 5
 let pathArray = [];
 
 function generateGameGrid() {
@@ -140,19 +140,27 @@ function generateZigzagPath(steps) {
 
 generateZigzagPath(pathLength);
 
-
-function pathPrepration(){
-  pathArray.forEach((cell,index,arr)=>{
-     if (index === 0) {
-      cell.classList.add("start-value")
-     }
-    if(index %2 === 0){
+function pathPrepration() {
+  pathArray.forEach((cell, index, arr) => {
+    cell.style.setProperty("--delay", index);
+    if (index % 2 === 0) {
       cell.classList.remove("up", "down", "left", "right");
+      cell.classList.add("expression");
+      cell.textContent = "EX";
     }
-    if(index === arr.length -1){
-      cell.classList.add("target-value")
+    if (index % 2 === 1) {
+      cell.classList.add("arrow");
     }
-   
-  })
+    if (index === 0) {
+      cell.classList.remove("expression");
+      cell.classList.add("start-value");
+      cell.textContent = "ST";
+    }
+    if (index === arr.length - 1) {
+      cell.classList.remove("expression");
+      cell.classList.add("target-value");
+      cell.textContent = "TA";
+    }
+  });
 }
-pathPrepration()
+pathPrepration();
