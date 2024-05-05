@@ -22,9 +22,12 @@
     <title>Test Page</title>
   </head>
   <body>
-    <div class="game-wrapper p-4 d-flex flex-column justify-content-start align-items-center">
+    <div class="game-wrapper p-4 d-flex flex-column justify-content-start align-items-center gap-2">
       <h1>MOP</h1>
       <div class="game-field"></div>
+        <div class="model__expressions"></div>
+      <div class="model__result"></div>
+        <button id="newGameBtn" class="btn btn-warning">New Game</button>
     </div>
     <div class="model d-none">
       <div class="model__items">
@@ -42,11 +45,8 @@
           step="1"
           value="0"
         />
-        <button id="newGameBtn" class="btn">New Game</button>
+      
       </div>
-      <div class="model__check"></div>
-      <div class="model__expressions"></div>
-      <div class="model__result"></div>
     </div>
     <!-- JavaScript -->
     <!-- <script type="module" src="./test.js"></script> -->

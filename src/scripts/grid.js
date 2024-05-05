@@ -153,7 +153,7 @@ function pathPrepration() {
     }
     if (index === 0) {
       cell.classList.remove("expression");
-      cell.classList.add("start-value");
+      cell.classList.add("starting-value");
       cell.textContent = "ST";
     }
     if (index === arr.length - 1) {

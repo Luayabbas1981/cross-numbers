@@ -28,6 +28,11 @@ body {
   aspect-ratio: 1;
   padding: 1rem;
 }
+.model__expressions{
+  height: 10%;
+  background-color: #fff;
+  width: 75%;
+}
 .game-field .row {
   display: flex;
   width: 100%;
