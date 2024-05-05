@@ -4,7 +4,7 @@ const rows = coords;
 const columns = coords;
 const cellsArray = [];
 let pathArray = null;
-let pathLength = 9;
+let pathLength = 13;
 
 function generateGameGrid() {
   const gameField = document.querySelector(".game-field");
@@ -30,7 +30,7 @@ generateGameGrid();
 function generateZigzagPath(steps) {
   let attempt = 0;
   while (attempt < pathLength) {
-    let currentRow = Math.floor(rows / 2);
+    let currentRow = Math.floor(rows / 3);
     let currentCol = Math.floor(Math.random() * (columns - 2)) + 1;
     let lastDirection = "vertical";
     let changeDirectionAfter = 4;
