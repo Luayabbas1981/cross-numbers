@@ -49,7 +49,7 @@ body {
   background-color: #009db1;
   border-radius: 50%;
 }
-.target-value {
+.last-cell {
   background-color: #b4c50b;
   border-radius: 50%;
 }
@@ -88,4 +88,11 @@ body {
 .arrows-con img {
   width: 1.5rem;
   cursor: pointer;
+}
+
+.model__expressions{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #000;
 }

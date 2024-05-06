@@ -8,7 +8,7 @@ import {
 } from "./helper.js";
 import * as grid from "./grid.js";
 // Game values
-const pathLength = 13; // always odd number up 5
+const pathLength = 13; 
 let gameLevel = 0;
 grid.generateZigzagPath(pathLength);
 // Declaration
@@ -22,6 +22,7 @@ const resultEl = document.querySelector(".model__result");
 const gameLevelCon = document.querySelector(".level");
 const levelUp = document.querySelector(".arrows-con img:first-child");
 const levelDown = document.querySelector(".arrows-con img:last-child");
+
 
 // event listeners
 newGameButton.addEventListener("click", startGame);
@@ -44,6 +45,8 @@ levelDown.addEventListener("click", function () {
 
 // Main function of the game
 function startGame() {
+  
+  
   try {
     // console.log(gameLevel);
     let min, max, startingValue, maxValue, operatorString, numExpression;
@@ -94,6 +97,7 @@ function startGame() {
     resultEl.textContent = "Error: " + error.message;
   }
 }
+console.log(expressionArray);
 
 function dragDropExpression() {
   const draggableExpressionEls = document.getElementsByClassName("expression");

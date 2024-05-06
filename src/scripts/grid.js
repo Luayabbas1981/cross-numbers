@@ -158,8 +158,14 @@ function pathPrepration() {
     }
     if (index === arr.length - 1) {
       cell.classList.remove("expression");
-      cell.classList.add("target-value");
-      cell.textContent = "TA";
+      cell.classList.add("last-cell");
+      const targetValue = document.createElement("div")
+      targetValue.classList.add("target-value");
+      const currentValue = document.createElement("div")
+      targetValue.classList.add("current-value")
+      currentValue.classList.add("div")
+      cell.append(targetValue,currentValue)
+      targetValue.textContent = "TA";
     }
   });
 }
