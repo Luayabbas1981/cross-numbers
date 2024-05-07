@@ -30,9 +30,12 @@ body {
   padding: 1rem;
 }
 .model__expressions{
-  height: 10%;
-  background-color: #fff;
-  width: 75%;
+  height: 7%;
+  width: 50%;
+  background-color: #03a9f4;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .game-field .row {
   display: flex;
@@ -91,11 +94,8 @@ body {
   cursor: pointer;
 }
 
-.model__expressions{
-  background-color: #03a9f4;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  
-}
 
+.model-check{
+  border-radius: 50%;
+  background-color: #ffc107;
+}
