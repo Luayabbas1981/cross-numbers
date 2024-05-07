@@ -160,10 +160,10 @@ function checkPlayGame() {
     : currentValue;
   //  if (!targetReached) {
   //    currentValueEl.style = "color:#ff7f00";
-  //  } else 
+  //  } else
   if (targetReached && expressionsZone.children.length !== 0) {
-     resultEl.innerHTML = "to win you should use all operations in the box";
-   } else if (targetReached && expressionsZone.children.length === 0) {
-     resultEl.innerHTML = "GREAT! 🤩";
-   }
+    resultEl.innerHTML = "to win you should use all operations in the box";
+  } else if (targetReached && expressionsZone.children.length === 0) {
+    resultEl.innerHTML = "GREAT! 🤩";
+  }
 }
