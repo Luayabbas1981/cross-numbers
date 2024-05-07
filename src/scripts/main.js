@@ -117,6 +117,12 @@ function dragDropExpression() {
 
   checkZone.forEach((cell) => {
     cell.addEventListener("dragover", (e) => {
+      console.log(e.target.closet);
+      
+      if (e.target.classList.contains("active")) {
+        e.target.closet(".model-check").innerHTML+= e.target.innerHTML;
+        e.target.innerHTML = "";
+      }
       e.preventDefault();
       e.dataTransfer.dropEffect = "move";
     });
@@ -128,7 +134,7 @@ function dragDropExpression() {
       const expId = e.dataTransfer.getData("expId");
       // console.log(expId);
       const draggableExpression = document.getElementById(expId);
-      // if (e.target.classList.contains("active")   )
+
       if (e.target.classList.contains("model-check")) {
         e.target.appendChild(draggableExpression);
         e.target.classList.add("active");
