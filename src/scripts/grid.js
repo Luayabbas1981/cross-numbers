@@ -169,8 +169,7 @@ function pathPrepration() {
       const targetValue = document.createElement("div");
       targetValue.classList.add("target-value");
       const currentValue = document.createElement("div");
-      targetValue.classList.add("current-value");
-      currentValue.classList.add("div");
+      currentValue.classList.add("current-value");
       cell.append(targetValue, currentValue);
     }
   });

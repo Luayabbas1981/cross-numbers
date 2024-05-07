@@ -37,6 +37,9 @@ body {
   justify-content: space-around;
   align-items: center;
 }
+.expression {
+  color: inherit;
+}
 .game-field .row {
   display: flex;
   width: 100%;
@@ -51,12 +54,25 @@ body {
   background: none;
 }
 .starting-value {
-  background-color: #03a9f4;
+  background-color: #ff9800;
   border-radius: 50%;
 }
 .last-cell {
-  background-color: #ff9800;
-  border-radius: 50%;
+  position: relative;
+  background-color: #01b5a5;
+}
+.target-value {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  color: #ffcd36;
+}
+.current-value {
+  scale: 0.8;
+  position: absolute;
+  bottom: -7%;
+  right: 3%;
 }
 .visited {
   font-weight: bold;
@@ -96,6 +112,7 @@ body {
 
 .model-check {
   border-radius: 50%;
-  background-color: #b3c500;
+  background-color: #ece288;
   font-size: 0.9rem;
+  color: #827500;
 }

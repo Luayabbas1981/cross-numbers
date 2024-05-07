@@ -158,12 +158,11 @@ function checkPlayGame() {
   currentValueEl.textContent = !Number.isInteger(currentValue)
     ? currentValue.toFixed(2)
     : currentValue;
-  if (targetReached && expressionsZone.children.length === 0) {
-    resultEl.innerHTML = "GREAT! 🤩";
-  } else if (!targetReached && expressionsZone.children.length === 0) {
-    currentValueEl.classList.add("shake-horizontal");
-    setTimeout(() => {
-      currentValueEl.classList.remove("shake-horizontal");
-    }, 800);
-  }
+   if (!targetReached) {
+     currentValueEl.style = "color:#ff7f00";
+   } else if (targetReached && expressionsZone.children.length !== 0) {
+     resultEl.innerHTML = "to win you should use all operations in the box";
+   } else if (targetReached && expressionsZone.children.length === 0) {
+     resultEl.innerHTML = "GREAT! 🤩";
+   }
 }
