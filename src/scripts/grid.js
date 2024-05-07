@@ -16,7 +16,6 @@ function generateGameGrid() {
     for (let y = 0; y < columns; y++) {
       const column = document.createElement("div");
       column.id = `${x}-${y}`;
-      column.classList.add("cell");
       row.appendChild(column);
       cellsArray.push(column);
     }
@@ -27,6 +26,11 @@ generateGameGrid();
 
 // create zigzag path
 function generateZigzagPath(steps) {
+  cellsArray.forEach((cell) => {
+    cell.style.removeProperty("--delay");
+    cell.className = "";
+    cell.classList.add("cell");
+  });
   let attempt = 0;
   while (attempt < steps) {
     let currentRow = Math.floor(rows / 3);
@@ -115,13 +119,13 @@ function generateZigzagPath(steps) {
       }
       // Create path array after path generate success
       if (visitedCells.size === steps) {
+        pathArray = [];
         visitedCells.forEach((id) => {
           const cellElement = document.getElementById(id);
           if (cellElement) {
             pathArray.push(cellElement);
           }
         });
-        console.log(pathArray);
       }
     }
 
@@ -138,15 +142,12 @@ function generateZigzagPath(steps) {
   pathPrepration();
 }
 
-
-
 function pathPrepration() {
   pathArray.forEach((cell, index, arr) => {
     cell.style.setProperty("--delay", index);
     if (index % 2 === 0) {
       cell.classList.remove("up", "down", "left", "right");
       cell.classList.add("expression");
-      cell.textContent = "EX";
     }
     if (index % 2 === 1) {
       cell.classList.add("arrow");
@@ -154,21 +155,18 @@ function pathPrepration() {
     if (index === 0) {
       cell.classList.remove("expression");
       cell.classList.add("starting-value");
-      cell.textContent = "ST";
     }
     if (index === arr.length - 1) {
       cell.classList.remove("expression");
       cell.classList.add("last-cell");
-      const targetValue = document.createElement("div")
+      const targetValue = document.createElement("div");
       targetValue.classList.add("target-value");
-      const currentValue = document.createElement("div")
-      targetValue.classList.add("current-value")
-      currentValue.classList.add("div")
-      cell.append(targetValue,currentValue)
-      targetValue.textContent = "TA";
+      const currentValue = document.createElement("div");
+      targetValue.classList.add("current-value");
+      currentValue.classList.add("div");
+      cell.append(targetValue, currentValue);
     }
   });
 }
 
-
-export {generateZigzagPath, cellsArray, pathArray};
+export { generateZigzagPath, cellsArray, pathArray };
