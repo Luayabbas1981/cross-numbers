@@ -85,15 +85,17 @@ function startGame() {
 
     let pathLength = expressionArray.length * 2 + 3 || 5;
     grid.generateZigzagPath(pathLength);
-    startingValueEl = document.querySelector(".starting-value");
-    currentValueEl = document.querySelector(".current-value");
-    targetValueEl = document.querySelector(".target-value");
+    setTimeout(() => {
+      startingValueEl = document.querySelector(".starting-value");
+      currentValueEl = document.querySelector(".current-value");
+      targetValueEl = document.querySelector(".target-value");
 
-    currentValueEl.textContent = startingValue;
-    startingValueEl.textContent = startingValue;
-    targetValueEl.textContent = targetValue;
-    checkZone = document.querySelectorAll(".model-check ");
-    dragDropExpression();
+      currentValueEl.textContent = startingValue;
+      startingValueEl.textContent = startingValue;
+      targetValueEl.textContent = targetValue;
+      checkZone = document.querySelectorAll(".model-check ");
+      dragDropExpression();
+    }, 100);
   } catch (error) {
     resultEl.textContent = "Error: " + error.message;
   }

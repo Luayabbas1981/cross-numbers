@@ -32,115 +32,117 @@ function generateZigzagPath(steps) {
     cell.className = "";
     cell.classList.add("cell");
   });
-  let attempt = 0;
-  while (attempt < steps) {
-    let currentRow = Math.floor(rows / 3);
-    let currentCol = Math.floor(Math.random() * (columns - 2)) + 1;
-    let lastDirection = "vertical";
-    let changeDirectionAfter = 4;
-    let currentDirectionSteps = 0;
+  setTimeout(() => {
+    let attempt = 0;
+    while (attempt < steps) {
+      let currentRow = Math.floor(rows / 3);
+      let currentCol = Math.floor(Math.random() * (columns - 2)) + 1;
+      let lastDirection = "vertical";
+      let changeDirectionAfter = 4;
+      let currentDirectionSteps = 0;
 
-    const visitedCells = new Set([`${currentRow}-${currentCol}`]);
-    let moveCount = 1;
-    document
-      .getElementById(`${currentRow}-${currentCol}`)
-      .classList.add("visited");
+      const visitedCells = new Set([`${currentRow}-${currentCol}`]);
+      let moveCount = 1;
+      document
+        .getElementById(`${currentRow}-${currentCol}`)
+        .classList.add("visited");
 
-    while (moveCount < steps) {
-      if (currentDirectionSteps >= changeDirectionAfter || moveCount === 1) {
-        lastDirection =
-          lastDirection === "vertical" ? "horizontal" : "vertical";
-        currentDirectionSteps = 0;
-      }
-
-      if (moveCount === 5) {
-        changeDirectionAfter = 2;
-      }
-
-      let potentialMoves = [];
-      if (lastDirection === "horizontal") {
-        if (
-          currentCol > 1 &&
-          !visitedCells.has(`${currentRow}-${currentCol - 1}`)
-        ) {
-          potentialMoves.push({
-            row: currentRow,
-            col: currentCol - 1,
-            dir: "left",
-          });
+      while (moveCount < steps) {
+        if (currentDirectionSteps >= changeDirectionAfter || moveCount === 1) {
+          lastDirection =
+            lastDirection === "vertical" ? "horizontal" : "vertical";
+          currentDirectionSteps = 0;
         }
-        if (
-          currentCol < columns - 2 &&
-          !visitedCells.has(`${currentRow}-${currentCol + 1}`)
-        ) {
-          potentialMoves.push({
-            row: currentRow,
-            col: currentCol + 1,
-            dir: "right",
-          });
-        }
-      } else {
-        if (
-          currentRow > 1 &&
-          !visitedCells.has(`${currentRow - 1}-${currentCol}`)
-        ) {
-          potentialMoves.push({
-            row: currentRow - 1,
-            col: currentCol,
-            dir: "up",
-          });
-        }
-        if (
-          currentRow < rows - 2 &&
-          !visitedCells.has(`${currentRow + 1}-${currentCol}`)
-        ) {
-          potentialMoves.push({
-            row: currentRow + 1,
-            col: currentCol,
-            dir: "down",
-          });
-        }
-      }
 
-      if (potentialMoves.length === 0) {
-        break; // No more valid moves
-      }
+        if (moveCount === 5) {
+          changeDirectionAfter = 2;
+        }
 
-      const move =
-        potentialMoves[Math.floor(Math.random() * potentialMoves.length)];
-      currentRow = move.row;
-      currentCol = move.col;
-
-      if (!visitedCells.has(`${currentRow}-${currentCol}`)) {
-        visitedCells.add(`${currentRow}-${currentCol}`);
-        const cell = document.getElementById(`${currentRow}-${currentCol}`);
-        cell.classList.add("visited", move.dir);
-        moveCount++;
-        currentDirectionSteps++;
-      }
-      // Create path array after path generate success
-      if (visitedCells.size === steps) {
-        pathArray = [];
-        visitedCells.forEach((id) => {
-          const cellElement = document.getElementById(id);
-          if (cellElement) {
-            pathArray.push(cellElement);
+        let potentialMoves = [];
+        if (lastDirection === "horizontal") {
+          if (
+            currentCol > 1 &&
+            !visitedCells.has(`${currentRow}-${currentCol - 1}`)
+          ) {
+            potentialMoves.push({
+              row: currentRow,
+              col: currentCol - 1,
+              dir: "left",
+            });
           }
+          if (
+            currentCol < columns - 2 &&
+            !visitedCells.has(`${currentRow}-${currentCol + 1}`)
+          ) {
+            potentialMoves.push({
+              row: currentRow,
+              col: currentCol + 1,
+              dir: "right",
+            });
+          }
+        } else {
+          if (
+            currentRow > 1 &&
+            !visitedCells.has(`${currentRow - 1}-${currentCol}`)
+          ) {
+            potentialMoves.push({
+              row: currentRow - 1,
+              col: currentCol,
+              dir: "up",
+            });
+          }
+          if (
+            currentRow < rows - 2 &&
+            !visitedCells.has(`${currentRow + 1}-${currentCol}`)
+          ) {
+            potentialMoves.push({
+              row: currentRow + 1,
+              col: currentCol,
+              dir: "down",
+            });
+          }
+        }
+
+        if (potentialMoves.length === 0) {
+          break; // No more valid moves
+        }
+
+        const move =
+          potentialMoves[Math.floor(Math.random() * potentialMoves.length)];
+        currentRow = move.row;
+        currentCol = move.col;
+
+        if (!visitedCells.has(`${currentRow}-${currentCol}`)) {
+          visitedCells.add(`${currentRow}-${currentCol}`);
+          const cell = document.getElementById(`${currentRow}-${currentCol}`);
+          cell.classList.add("visited", move.dir);
+          moveCount++;
+          currentDirectionSteps++;
+        }
+        // Create path array after path generate success
+        if (visitedCells.size === steps) {
+          pathArray = [];
+          visitedCells.forEach((id) => {
+            const cellElement = document.getElementById(id);
+            if (cellElement) {
+              pathArray.push(cellElement);
+            }
+          });
+        }
+      }
+
+      if (moveCount === steps) {
+        break; // Successful path creation
+      } else {
+        visitedCells.forEach((cell) => {
+          const elem = document.getElementById(cell);
+          elem.classList.remove("visited", "up", "down", "left", "right");
         });
+        attempt++;
       }
     }
-
-    if (moveCount === steps) {
-      break; // Successful path creation
-    } else {
-      visitedCells.forEach((cell) => {
-        const elem = document.getElementById(cell);
-        elem.classList.remove("visited", "up", "down", "left", "right");
-      });
-      attempt++;
-    }
-  }
-  pathPrepration();
+    pathPrepration();
+  }, 50);
 }
 
 function pathPrepration() {
