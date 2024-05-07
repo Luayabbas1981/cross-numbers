@@ -9,7 +9,6 @@ import {
 import * as grid from "./grid.js";
 // Game values
 let gameLevel = 0;
-let currentExpressions = [];
 
 // Declaration
 let startingValueEl = null;
