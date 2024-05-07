@@ -106,7 +106,10 @@ function dragDropExpression() {
   const draggableExpressionEls = document.getElementsByClassName("expression");
   for (const draggableExpEl of draggableExpressionEls) {
     draggableExpEl.addEventListener("dragstart", (e) => {
-      // console.log(e.target);
+      //  console.log(e.target);
+      if (e.target.classList.contains("active")) {
+        delete droppedExpressionsOrder[+e.target.parentElement.dataset.order];
+      }
       e.dataTransfer.setData("expId", e.target.id);
     });
   }
@@ -124,8 +127,10 @@ function dragDropExpression() {
       const expId = e.dataTransfer.getData("expId");
       // console.log(expId);
       const draggableExpression = document.getElementById(expId);
+      // if (e.target.classList.contains("expression") &&   )
       if (e.target.classList.contains("model-check")) {
         e.target.appendChild(draggableExpression);
+        e.target.children[0].classList.add("active");
         droppedExpressionsOrder.splice(
           +e.target.dataset.order,
           1,
