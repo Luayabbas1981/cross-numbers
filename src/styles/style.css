@@ -29,7 +29,7 @@ body {
   aspect-ratio: 1;
   padding: 1rem;
 }
-.model__expressions{
+.model__expressions {
   height: 7%;
   width: 50%;
   background-color: #03a9f4;
@@ -51,11 +51,11 @@ body {
   background: none;
 }
 .starting-value {
-  background-color: #009db1;
+  background-color: #03a9f4;
   border-radius: 50%;
 }
 .last-cell {
-  background-color: #b4c50b;
+  background-color: #ff9800;
   border-radius: 50%;
 }
 .visited {
@@ -63,7 +63,7 @@ body {
   opacity: 0;
   animation: show-path 0.3s ease-in-out forwards;
   animation-delay: calc(0.2s * var(--delay));
-  scale: 1.4;
+  scale: 1.2;
 }
 @keyframes show-path {
   to {
@@ -94,9 +94,8 @@ body {
   cursor: pointer;
 }
 
-
-.model-check{
+.model-check {
   border-radius: 50%;
-  background-color: #ff9800;
-  font-size:0.8rem;
+  background-color: #b3c500;
+  font-size: 0.9rem;
 }
