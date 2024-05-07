@@ -92,8 +92,10 @@ body {
 }
 
 .model__expressions{
+  background-color: #03a9f4;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  color: #000;
+  
 }
+

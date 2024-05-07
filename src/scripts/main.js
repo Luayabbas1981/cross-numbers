@@ -10,19 +10,18 @@ import * as grid from "./grid.js";
 // Game values
 let gameLevel = 0;
 let currentExpressions = [];
-let pathLength = currentExpressions.length * 2 + 3;
-grid.generateZigzagPath(5)
+
 // Declaration
-    const startingValueEl = document.querySelector(".starting-value");
-    const currentValueEl = document.querySelector(".current-value");
-    const targetValueEl = document.querySelector(".target-value");
-    const checkZone = document.querySelector(".model__check ");
-    const expressionsZone = document.querySelector(".model__expressions");
-    const newGameButton = document.querySelector("#newGameBtn");
-    const gameLevelCon = document.querySelector(".level");
-    const resultEl = document.querySelector(".model__result");
-    const levelUp = document.querySelector(".arrows-con img:first-child");
-    const levelDown = document.querySelector(".arrows-con img:last-child");
+let startingValueEl = null;
+let currentValueEl = null;
+let targetValueEl = null;
+let checkZone = null;
+const expressionsZone = document.querySelector(".model__expressions");
+const newGameButton = document.querySelector("#newGameBtn");
+const gameLevelCon = document.querySelector(".level");
+const resultEl = document.querySelector(".model__result");
+const levelUp = document.querySelector(".arrows-con img:first-child");
+const levelDown = document.querySelector(".arrows-con img:last-child");
 // event listeners
 newGameButton.addEventListener("click", startGame);
 
@@ -67,19 +66,14 @@ function startGame() {
     }
     // console.log({ min, max, startingValue, maxValue, numExpression });
     resultEl.innerHTML = "";
-
+    expressionsZone.innerHTML = "";
     const expressions = generateExpressionArray(
       startingValue,
       maxValue,
       operatorString,
       numExpression
     );
-
     const { expressionArray, targetValue } = expressions;
-    currentValueEl.textContent = startingValue;
-    startingValueEl.textContent = startingValue;
-    targetValueEl.textContent = targetValue;
-    expressionsZone.innerHTML = "";
 
     for (let i = 0; i < numExpression; i++) {
       let expDiv = document.createElement("div");
@@ -89,8 +83,18 @@ function startGame() {
       expDiv.textContent = `${expressionArray[i]}`;
       expressionsZone.appendChild(expDiv);
     }
+    console.log(expressionArray);
 
-    grid.generateZigzagPath(expressionArray.length * 2 + 3);    
+    let pathLength = expressionArray.length * 2 + 3 || 5;
+    grid.generateZigzagPath(pathLength);
+    startingValueEl = document.querySelector(".starting-value");
+    currentValueEl = document.querySelector(".current-value");
+    targetValueEl = document.querySelector(".target-value");
+
+    currentValueEl.textContent = startingValue;
+    startingValueEl.textContent = startingValue;
+    targetValueEl.textContent = targetValue;
+    checkZone = document.querySelectorAll(".model-check ");
     dragDropExpression();
   } catch (error) {
     resultEl.textContent = "Error: " + error.message;
@@ -105,20 +109,28 @@ function dragDropExpression() {
       e.dataTransfer.setData("expId", e.target.id);
     });
   }
-  checkZone.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = "move";
+
+  checkZone.forEach((cell) => {
+    cell.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = "move";
+    });
   });
 
-  checkZone.addEventListener("drop", (e) => {
-    e.preventDefault();
-    const expId = e.dataTransfer.getData("expId");
-    // console.log(expId);
-    const draggableExpression = document.getElementById(expId);
-    e.target.appendChild(draggableExpression);
+  checkZone.forEach((cell) => {
+    cell.addEventListener("drop", (e) => {
+      e.preventDefault();
+      const expId = e.dataTransfer.getData("expId");
+      // console.log(expId);
+      const draggableExpression = document.getElementById(expId);
+      if (e.target.classList.contains("model-check")) {
+        e.target.appendChild(draggableExpression);
+      }
+    });
   });
-
-  checkZone.addEventListener("dragend", checkPlayGame);
+  checkZone.forEach((cell) => {
+    cell.addEventListener("dragend", checkPlayGame);
+  });
 }
 
 function checkPlayGame() {

@@ -27,6 +27,7 @@ generateGameGrid();
 // create zigzag path
 function generateZigzagPath(steps) {
   cellsArray.forEach((cell) => {
+    cell.innerHTML = "";
     cell.style.removeProperty("--delay");
     cell.className = "";
     cell.classList.add("cell");
@@ -147,17 +148,17 @@ function pathPrepration() {
     cell.style.setProperty("--delay", index);
     if (index % 2 === 0) {
       cell.classList.remove("up", "down", "left", "right");
-      cell.classList.add("expression");
+      cell.classList.add("model-check");
     }
     if (index % 2 === 1) {
       cell.classList.add("arrow");
     }
     if (index === 0) {
-      cell.classList.remove("expression");
+      cell.classList.remove("model-check");
       cell.classList.add("starting-value");
     }
     if (index === arr.length - 1) {
-      cell.classList.remove("expression");
+      cell.classList.remove("model-check");
       cell.classList.add("last-cell");
       const targetValue = document.createElement("div");
       targetValue.classList.add("target-value");
