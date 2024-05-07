@@ -15,6 +15,7 @@ let startingValueEl = null;
 let currentValueEl = null;
 let targetValueEl = null;
 let checkZone = null;
+let droppedExpressionsOrder = null;
 const expressionsZone = document.querySelector(".model__expressions");
 const newGameButton = document.querySelector("#newGameBtn");
 const gameLevelCon = document.querySelector(".level");
