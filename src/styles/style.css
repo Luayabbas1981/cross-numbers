@@ -59,14 +59,14 @@ body {
 }
 .last-cell {
   position: relative;
-  background-color: #01b5a5;
+  background-color: #009688;
 }
 .target-value {
   position: absolute;
   left: 50%;
   top: 50%;
   translate: -50% -50%;
-  color: #ffcd36;
+  color: #f8e21e;
 }
 .current-value {
   scale: 0.8;
@@ -114,5 +114,8 @@ body {
   border-radius: 50%;
   background-color: #ece288;
   font-size: 0.9rem;
-  color: #827500;
+  color: #5f5600;
+}
+#newGameBtn{
+ box-shadow: none;
 }
