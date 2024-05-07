@@ -126,12 +126,12 @@ function dragDropExpression() {
       const draggableExpression = document.getElementById(expId);
       if (e.target.classList.contains("model-check")) {
         e.target.appendChild(draggableExpression);
-          droppedExpressionsOrder.splice(
-            +e.target.dataset.order,
-            1,
-            e.target.children[0].textContent
-          );
-          console.log(droppedExpressionsOrder);
+        droppedExpressionsOrder.splice(
+          +e.target.dataset.order,
+          1,
+          e.target.children[0].textContent
+        );
+        console.log(droppedExpressionsOrder);
       }
     });
   });
