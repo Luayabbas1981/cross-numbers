@@ -97,5 +97,6 @@ body {
 
 .model-check{
   border-radius: 50%;
-  background-color: #ffc107;
+  background-color: #ff9800;
+  font-size:0.8rem;
 }
