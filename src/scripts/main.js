@@ -136,9 +136,9 @@ function dragDropExpression() {
 function checkPlayGame() {
   // alert("check button clicked");
   let expressions = [];
- for (const ex of checkZone) {
-   ex.innerHTML ? expressions.push(ex.textContent) : "";
- }
+  for (const ex of checkZone) {
+    ex.innerHTML ? expressions.push(ex.textContent) : "";
+  }
   const startingValue = startingValueEl.textContent;
   const targetValue = Number(targetValueEl.textContent);
   const checkObject = isTargetValueReached(
