@@ -83,7 +83,6 @@ function startGame() {
       expDiv.textContent = `${expressionArray[i]}`;
       expressionsZone.appendChild(expDiv);
     }
-    console.log(expressionArray);
 
     let pathLength = expressionArray.length * 2 + 3 || 5;
     grid.generateZigzagPath(pathLength);
