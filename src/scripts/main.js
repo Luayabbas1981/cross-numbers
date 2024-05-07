@@ -15,7 +15,6 @@ let startingValueEl = null;
 let currentValueEl = null;
 let targetValueEl = null;
 let checkZone = null;
-let droppedExpressionsOrder = null;
 const expressionsZone = document.querySelector(".model__expressions");
 const newGameButton = document.querySelector("#newGameBtn");
 const gameLevelCon = document.querySelector(".level");
@@ -83,7 +82,6 @@ function startGame() {
       expDiv.textContent = `${expressionArray[i]}`;
       expressionsZone.appendChild(expDiv);
     }
-    droppedExpressionsOrder = new Array(expressionArray.length);
     let pathLength = expressionArray.length * 2 + 3 || 5;
     grid.generateZigzagPath(pathLength);
     setTimeout(() => {
@@ -107,22 +105,12 @@ function dragDropExpression() {
   for (const draggableExpEl of draggableExpressionEls) {
     draggableExpEl.addEventListener("dragstart", (e) => {
       //console.log(e.target);
-      if (e.target.parentElement.classList.contains("active")) {
-        delete droppedExpressionsOrder[+e.target.parentElement.dataset.order];
-        e.target.parentElement.classList.remove("active");
-      }
       e.dataTransfer.setData("expId", e.target.id);
     });
   }
 
   checkZone.forEach((cell) => {
     cell.addEventListener("dragover", (e) => {
-      console.log(e.target.closet);
-      
-      if (e.target.classList.contains("active")) {
-        e.target.closet(".model-check").innerHTML+= e.target.innerHTML;
-        e.target.innerHTML = "";
-      }
       e.preventDefault();
       e.dataTransfer.dropEffect = "move";
     });
@@ -137,13 +125,6 @@ function dragDropExpression() {
 
       if (e.target.classList.contains("model-check")) {
         e.target.appendChild(draggableExpression);
-        e.target.classList.add("active");
-        droppedExpressionsOrder.splice(
-          +e.target.dataset.order,
-          1,
-          e.target.children[0].textContent
-        );
-        console.log(droppedExpressionsOrder);
       }
     });
   });

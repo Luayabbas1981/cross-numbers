@@ -146,15 +146,11 @@ function generateZigzagPath(steps) {
 }
 
 function pathPrepration() {
-  let orderIndex = 0;
   pathArray.forEach((cell, index, arr) => {
     cell.style.setProperty("--delay", index);
     if (index % 2 === 0) {
       cell.classList.remove("up", "down", "left", "right");
       cell.classList.add("model-check");
-      if (index > 1) {
-        cell.dataset.order = orderIndex++;
-      }
     }
     if (index % 2 === 1) {
       cell.classList.add("arrow");
