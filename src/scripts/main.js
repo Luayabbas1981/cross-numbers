@@ -83,7 +83,7 @@ function startGame() {
       expDiv.textContent = `${expressionArray[i]}`;
       expressionsZone.appendChild(expDiv);
     }
-
+    droppedExpressionsOrder = new Array(expressionArray.length);
     let pathLength = expressionArray.length * 2 + 3 || 5;
     grid.generateZigzagPath(pathLength);
     setTimeout(() => {
