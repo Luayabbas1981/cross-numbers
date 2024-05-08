@@ -28,9 +28,10 @@ generateGameGrid();
 function generateZigzagPath(steps) {
   cellsArray.forEach((cell) => {
     cell.innerHTML = "";
-    cell.style.removeProperty("--delay");
     cell.className = "";
     cell.classList.add("cell");
+    cell.style.removeProperty("--delay");
+    cell.removeAttribute("data-order");
   });
   setTimeout(() => {
     let attempt = 0;
