@@ -103,25 +103,28 @@ function startGame() {
 }
 
 function dragDropExpression() {
-  const draggableExpressionEls = document.getElementsByClassName("expression");
-  for (const draggableExpEl of draggableExpressionEls) {
-    draggableExpEl.addEventListener("dragstart", (e) => {
-      //console.log(e.target);
-      if (e.target.parentElement.classList.contains("active")) {
-        delete droppedExpressionsOrder[+e.target.parentElement.dataset.order];
-        e.target.parentElement.classList.remove("active");
-      }
-      e.dataTransfer.setData("expId", e.target.id);
-    });
+  function dragStart() {
+    const draggableExpressionEls =
+      document.getElementsByClassName("expression");
+    for (const draggableExpEl of draggableExpressionEls) {
+      draggableExpEl.addEventListener("dragstart", (e) => {
+        //console.log(e.target);
+        if (e.target.parentElement.classList.contains("active")) {
+          delete droppedExpressionsOrder[+e.target.parentElement.dataset.order];
+          e.target.parentElement.classList.remove("active");
+        }
+        e.dataTransfer.setData("expId", e.target.id);
+      });
+    }
   }
-
+  dragStart();
   checkZone.forEach((cell) => {
     cell.addEventListener("dragover", (e) => {
-      console.log(e.target.closet);
-      
+      // console.log(e.target.closet);
       if (e.target.classList.contains("active")) {
-        e.target.closet(".model-check").innerHTML+= e.target.innerHTML;
-        e.target.innerHTML = "";
+        expressionsZone.innerHTML += e.target.innerHTML;
+        e.target.textContent = "";
+        dragStart();
       }
       e.preventDefault();
       e.dataTransfer.dropEffect = "move";
