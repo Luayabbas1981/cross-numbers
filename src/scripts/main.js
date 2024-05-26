@@ -6,27 +6,44 @@ import {
   // generateExpression,
   generateExpressionArray,
 } from "./helper.js";
+import * as grid from "./grid.js";
+// Game values
+let gameLevel = 0;
 
 // Declaration
-const startingValueEl = document.querySelector(".starting-value");
-const currentValueEl = document.querySelector(".current-value");
-const targetValueEl = document.querySelector(".target-value");
-const gameLevelInput = document.getElementById("game-level");
-const newGameButton = document.querySelector("#newGameBtn");
-const checkZone = document.querySelector(".model__check ");
+let startingValueEl = null;
+let currentValueEl = null;
+let targetValueEl = null;
+let checkZone = null;
+let droppedExpressionsOrder = null;
 const expressionsZone = document.querySelector(".model__expressions");
+const newGameButton = document.querySelector("#newGameBtn");
+const gameLevelCon = document.querySelector(".level");
 const resultEl = document.querySelector(".model__result");
-
+const levelUp = document.querySelector(".arrows-con img:first-child");
+const levelDown = document.querySelector(".arrows-con img:last-child");
 // event listeners
 newGameButton.addEventListener("click", startGame);
 
 //Global variables
 //let gameLevel = 0; // game level starts at 0 and ends at 10
+// Level controller
+levelUp.addEventListener("click", function () {
+  if (gameLevel < 6) {
+    gameLevel++;
+    gameLevelCon.textContent = gameLevel;
+  }
+});
+levelDown.addEventListener("click", function () {
+  if (gameLevel > 0) {
+    gameLevel--;
+    gameLevelCon.textContent = gameLevel;
+  }
+});
 
 // Main function of the game
 function startGame() {
   try {
-    let gameLevel = parseInt(gameLevelInput.value);
     // console.log(gameLevel);
     let min, max, startingValue, maxValue, operatorString, numExpression;
     if (gameLevel === 0) {
@@ -35,32 +52,28 @@ function startGame() {
       startingValue = getRandomIntInclusive(min, max);
       maxValue = max;
       operatorString = "+";
-      numExpression = 1
+      numExpression = 1;
     } else {
       min = gameLevel;
-      max = (gameLevel * 10) - 1;
+      max = gameLevel * 10 - 1;
       startingValue = getRandomIntInclusive(min, max);
       maxValue = Math.ceil((startingValue + max) / 2);
       operatorString = "";
-      numExpression = gameLevel < 6 ? getRandomIntInclusive(gameLevel, (gameLevel + 1)) : getRandomIntInclusive((gameLevel - 1), (gameLevel));
+      numExpression =
+        gameLevel < 6
+          ? getRandomIntInclusive(gameLevel, gameLevel + 1)
+          : getRandomIntInclusive(gameLevel - 1, gameLevel);
     }
     // console.log({ min, max, startingValue, maxValue, numExpression });
-
-    checkZone.innerHTML = "";
     resultEl.innerHTML = "";
-
+    expressionsZone.innerHTML = "";
     const expressions = generateExpressionArray(
       startingValue,
       maxValue,
       operatorString,
       numExpression
     );
-
     const { expressionArray, targetValue } = expressions;
-    currentValueEl.textContent = startingValue;
-    startingValueEl.textContent = startingValue;
-    targetValueEl.textContent = targetValue;
-    expressionsZone.innerHTML = "";
 
     for (let i = 0; i < numExpression; i++) {
       let expDiv = document.createElement("div");
@@ -70,46 +83,92 @@ function startGame() {
       expDiv.textContent = `${expressionArray[i]}`;
       expressionsZone.appendChild(expDiv);
     }
-    dragDropExpression();
+    droppedExpressionsOrder = new Array(expressionArray.length);
+    let pathLength = expressionArray.length * 2 + 3 || 5;
+    grid.generateZigzagPath(pathLength);
+    setTimeout(() => {
+      startingValueEl = document.querySelector(".starting-value");
+      currentValueEl = document.querySelector(".current-value");
+      targetValueEl = document.querySelector(".target-value");
 
+      currentValueEl.textContent = startingValue;
+      startingValueEl.textContent = startingValue;
+      targetValueEl.textContent = targetValue;
+      checkZone = document.querySelectorAll(".model-check ");
+      dragDropExpression();
+    }, 100);
   } catch (error) {
     resultEl.textContent = "Error: " + error.message;
   }
 }
 
 function dragDropExpression() {
-  const draggableExpressionEls =
-    document.getElementsByClassName("expression");
-  for (const draggableExpEl of draggableExpressionEls) {
-    draggableExpEl.addEventListener("dragstart", (e) => {
-      // console.log(e.target);
-      e.dataTransfer.setData("expId", e.target.id);
-    });
+  function dragStart() {
+    const draggableExpressionEls =
+      document.getElementsByClassName("expression");
+    for (const draggableExpEl of draggableExpressionEls) {
+      draggableExpEl.addEventListener("dragstart", (e) => {
+        //console.log(e.target);
+        if (e.target.parentElement.classList.contains("active")) {
+          delete droppedExpressionsOrder[+e.target.parentElement.dataset.order];
+          e.target.parentElement.classList.remove("active");
+        }
+        e.dataTransfer.setData("expId", e.target.id);
+      });
+    }
   }
-  checkZone.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = "move";
+  dragStart();
+  checkZone.forEach((cell) => {
+    cell.addEventListener("dragover", (e) => {
+      // console.log(e.target.closet);
+      if (e.target.classList.contains("active")) {
+        expressionsZone.innerHTML += e.target.innerHTML;
+        e.target.textContent = "";
+        dragStart();
+      }
+      e.preventDefault();
+      e.dataTransfer.dropEffect = "move";
+    });
   });
 
-  checkZone.addEventListener("drop", (e) => {
-    e.preventDefault();
-    const expId = e.dataTransfer.getData("expId");
-    // console.log(expId);
-    const draggableExpression = document.getElementById(expId)
-    e.target.appendChild(draggableExpression)
-  })
+  checkZone.forEach((cell) => {
+    cell.addEventListener("drop", (e) => {
+      e.preventDefault();
+      const expId = e.dataTransfer.getData("expId");
+      // console.log(expId);
+      const draggableExpression = document.getElementById(expId);
 
-  checkZone.addEventListener("dragend", checkPlayGame)
+      if (e.target.classList.contains("model-check")) {
+        e.target.appendChild(draggableExpression);
+        e.target.classList.add("active");
+        droppedExpressionsOrder.splice(
+          +e.target.dataset.order,
+          1,
+          e.target.children[0].textContent
+        );
+        console.log({ droppedExpressionsOrder });
+      }
+    });
+  });
+  checkZone.forEach((cell) => {
+    // console.log({cell});
+    cell.addEventListener("dragend", checkPlayGame);
+  });
 }
 
-
 function checkPlayGame() {
-  // alert("check button clicked");
   let expressions = [];
-  for (const ex of checkZone.children) {
-    expressions.push(ex.innerHTML);
-  }
-  const startingValue = startingValueEl.textContent
+  checkZone.forEach((cell) => {
+    if (cell.innerHTML) {
+      const expressionEl = cell.children[0];
+      const expressionOrder = cell.dataset.order;
+      expressions[expressionOrder] = expressionEl.textContent;
+    }
+  })
+  console.log("Realistic expressions", expressions);
+  expressions = expressions.filter(ex => Boolean(ex) !== 0);
+  console.log("filtered and rearranged expressions", expressions);
+  const startingValue = startingValueEl.textContent;
   const targetValue = Number(targetValueEl.textContent);
   const checkObject = isTargetValueReached(
     startingValue,
@@ -118,14 +177,15 @@ function checkPlayGame() {
   );
   // console.log(checkObject);
   const { currentValue, targetReached } = checkObject;
-  currentValueEl.textContent = !Number.isInteger(currentValue) ? currentValue.toFixed(2) : currentValue;
-  if (targetReached && expressionsZone.children.length === 0) {
+  currentValueEl.textContent = !Number.isInteger(currentValue)
+    ? currentValue.toFixed(2)
+    : currentValue;
+  //  if (!targetReached) {
+  //    currentValueEl.style = "color:#ff7f00";
+  //  } else
+  if (targetReached && expressionsZone.children.length !== 0) {
+    resultEl.innerHTML = "to win you should use all operations in the box";
+  } else if (targetReached && expressionsZone.children.length === 0) {
     resultEl.innerHTML = "GREAT! 🤩";
-
-  } else if (!targetReached && expressionsZone.children.length === 0) {
-    currentValueEl.classList.add("shake-horizontal");
-    setTimeout(() => {
-      currentValueEl.classList.remove("shake-horizontal");
-    }, 800);
   }
 }
