@@ -27,7 +27,7 @@ newGameButton.addEventListener("click", startGame);
 
 //Global variables
 //let gameLevel = 0; // game level starts at 0 and ends at 10
-// Level cotroller
+// Level controller
 levelUp.addEventListener("click", function () {
   if (gameLevel < 6) {
     gameLevel++;
@@ -146,21 +146,28 @@ function dragDropExpression() {
           1,
           e.target.children[0].textContent
         );
-        console.log(droppedExpressionsOrder);
+        console.log({ droppedExpressionsOrder });
       }
     });
   });
   checkZone.forEach((cell) => {
+    // console.log({cell});
     cell.addEventListener("dragend", checkPlayGame);
   });
 }
 
 function checkPlayGame() {
-  // alert("check button clicked");
   let expressions = [];
-  for (const ex of checkZone) {
-    ex.innerHTML ? expressions.push(ex.textContent) : "";
-  }
+  checkZone.forEach((cell) => {
+    if (cell.innerHTML) {
+      const expressionEl = cell.children[0];
+      const expressionOrder = cell.dataset.order;
+      expressions[expressionOrder] = expressionEl.textContent;
+    }
+  })
+  console.log("Realistic expressions", expressions);
+  expressions = expressions.filter(ex => Boolean(ex) !== 0);
+  console.log("filtered and rearranged expressions", expressions);
   const startingValue = startingValueEl.textContent;
   const targetValue = Number(targetValueEl.textContent);
   const checkObject = isTargetValueReached(
