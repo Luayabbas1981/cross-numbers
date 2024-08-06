@@ -188,6 +188,6 @@ function checkPlayGame() {
   if (targetReached && expressionsZone.children.length !== 0) {
     resultEl.innerHTML = "to win you should use all operations in the box";
   } else if (targetReached && expressionsZone.children.length === 0) {
-    resultEl.innerHTML = "GREAT! 🤩";
+    resultEl.innerHTML = "GREAT!";
   }
 }

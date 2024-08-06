@@ -1,6 +1,6 @@
 # Crossed Numbers
 
-Crossed Numbers game presents players with the task of reaching a target value by strategically applying a series of operations (additions, subtractions, multiplications, divisions) to a starting value. Despite its apparent simplicity, the game can become quite challenging as players progress.
+MOP "Mathematic operations puzzle" game presents players with the task of reaching a target value by strategically applying a series of operations (additions, subtractions, multiplications, divisions) to a starting value. Despite its apparent simplicity, the game can become quite challenging as players progress.
 
 ## References
 
