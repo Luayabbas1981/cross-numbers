@@ -9,12 +9,7 @@
 }
 
 body {
-  background: radial-gradient(
-      ellipse at 94% 49%,
-      #363f57 0,
-      rgba(50, 59, 82, 0) 64%
-    ),
-    radial-gradient(ellipse at 38% 89%, #323a50 14%, #151515 74%) no-repeat;
+ background: radial-gradient(ellipse at 94% 49%, #369c6a 0, rgba(50, 59, 82, 0) 64%), radial-gradient(ellipse at 38% 89%, #287358 14%, #192d2f 74%) no-repeat;
   height: 100vh;
   overflow: hidden;
 }
@@ -32,12 +27,14 @@ body {
 .model__expressions {
   height: 7%;
   width: 50%;
-  background-color: #047db4;
+  color: #323d26;
+  background-color: #cddc39;
   display: flex;
   justify-content: space-around;
   align-items: center;
   border-radius: 0.5rem;
   cursor: grab;
+  font-size: 1.3rem;
 }
 .expression {
   color: inherit;
@@ -61,21 +58,21 @@ body {
 }
 .last-cell {
   position: relative;
-  background-color: #3f51b5;
+  background-color: #03a9f4;
 }
 .target-value {
   position: absolute;
   left: 50%;
   top: 50%;
   translate: -50% -50%;
-  color: #ece288;
+  color: #fff;
 }
 .current-value {
   scale: 0.8;
   position: absolute;
   bottom: -7%;
   right: 3%;
-  color: #00ff9b;
+  color: #034564;
 }
 .visited {
   font-weight: bold;
@@ -121,4 +118,9 @@ body {
 }
 #newGameBtn {
   box-shadow: none;
+}
+@media (max-width:767px){
+  .model__expressions{
+    width: 95%;
+  }
 }
