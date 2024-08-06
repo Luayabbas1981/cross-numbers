@@ -8,7 +8,7 @@ import {
 } from "./helper.js";
 import * as grid from "./grid.js";
 // Game values
-let gameLevel = 0;
+let gameLevel = 1;
 
 // Declaration
 let startingValueEl = null;
@@ -22,6 +22,7 @@ const gameLevelCon = document.querySelector(".level");
 const resultEl = document.querySelector(".model__result");
 const levelUp = document.querySelector(".arrows-con img:first-child");
 const levelDown = document.querySelector(".arrows-con img:last-child");
+const intro = document.querySelector(".intro");
 // event listeners
 newGameButton.addEventListener("click", startGame);
 
@@ -43,10 +44,11 @@ levelDown.addEventListener("click", function () {
 
 // Main function of the game
 function startGame() {
+  intro.classList.add("d-none")
   try {
     // console.log(gameLevel);
     let min, max, startingValue, maxValue, operatorString, numExpression;
-    if (gameLevel === 0) {
+    if (gameLevel === 1) {
       min = 1;
       max = 10;
       startingValue = getRandomIntInclusive(min, max);
@@ -164,9 +166,9 @@ function checkPlayGame() {
       const expressionOrder = cell.dataset.order;
       expressions[expressionOrder] = expressionEl.textContent;
     }
-  })
+  });
   console.log("Realistic expressions", expressions);
-  expressions = expressions.filter(ex => Boolean(ex) !== 0);
+  expressions = expressions.filter((ex) => Boolean(ex) !== 0);
   console.log("filtered and rearranged expressions", expressions);
   const startingValue = startingValueEl.textContent;
   const targetValue = Number(targetValueEl.textContent);

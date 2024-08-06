@@ -18,7 +18,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="styles/style.css" />
+   <link rel="stylesheet" href="style.css">
     <title>Test Page</title>
   </head>
   <body>
@@ -26,6 +26,12 @@
       class="game-wrapper p-4 d-flex flex-column justify-content-start align-items-center gap-2"
     >
       <h1>MOP</h1>
+      <div
+        class="intro position-absolute top-50 start-50 translate-middle fs-3"
+      >
+        <li>Choses a level</li>
+        <li>Drag and drop numbers to reach the right result</li>
+      </div>
       <div class="game-field"></div>
       <div class="model__expressions"></div>
       <div
@@ -35,10 +41,10 @@
           class="level-container me-4 d-flex justify-content-around align-items-center gap-4"
         >
           <div class="text-light">Game level</div>
-          <div class="level fs-5">0</div>
+          <div class="level fs-5">1</div>
           <div class="arrows-con d-flex flex-column gap-2">
-            <img src="../images/green-triangle.png" alt="" /><img
-              src="../images/red-triangle.png"
+            <img src="./images/green-triangle.png" alt="" /><img
+              src="./images/red-triangle.png"
               alt=""
             />
           </div>
@@ -50,6 +56,6 @@
 
     <!-- JavaScript -->
     <!-- <script type="module" src="./test.js"></script> -->
-    <script type="module" src="scripts/main.js"></script>
+    <script type="module" src="main.js"></script>
   </body>
 </html>

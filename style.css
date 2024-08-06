@@ -1,6 +1,6 @@
 @font-face {
   font-family: "mop";
-  src: url(../../fonts/Play-Bold.ttf);
+  src: url(./fonts/Play-Bold.ttf);
 }
 * {
   box-sizing: border-box;
