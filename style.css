@@ -15,13 +15,12 @@ body {
       rgba(50, 59, 82, 0) 64%
     ),
     radial-gradient(ellipse at 38% 89%, #287358 14%, #192d2f 74%) no-repeat;
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
 }
 
 .game-wrapper {
-  margin-top: 2rem;
-  height: 100vh;
+  height: 100%;
   color: #fff;
 }
 .game-field {
