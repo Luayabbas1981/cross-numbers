@@ -9,7 +9,12 @@
 }
 
 body {
- background: radial-gradient(ellipse at 94% 49%, #369c6a 0, rgba(50, 59, 82, 0) 64%), radial-gradient(ellipse at 38% 89%, #287358 14%, #192d2f 74%) no-repeat;
+  background: radial-gradient(
+      ellipse at 94% 49%,
+      #369c6a 0,
+      rgba(50, 59, 82, 0) 64%
+    ),
+    radial-gradient(ellipse at 38% 89%, #287358 14%, #192d2f 74%) no-repeat;
   height: 100vh;
   overflow: hidden;
 }
@@ -119,8 +124,21 @@ body {
 #newGameBtn {
   box-shadow: none;
 }
-@media (max-width:767px){
-  .model__expressions{
+@media (max-width: 767px) {
+  .model__expressions {
     width: 95%;
+  }
+  .intro {
+    width: 75%;
+  }
+  .intro ul {
+    width: 100%;
+  }
+  .intro li {
+    font-size: 1rem;
+  }
+  .current-value {
+    bottom: -22%;
+    right: 0%;
   }
 }
